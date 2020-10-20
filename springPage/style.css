@@ -1,0 +1,165 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    font-size: 23px;
+    font-family: Open Sans, sans-serif;
+}
+
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 72px;
+}
+
+header {
+    margin-bottom: 80px;
+}
+
+.nav {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background: #fff;
+    border-bottom: 1px solid #ebf2f2;
+}
+
+.font-for-menu {
+    font-weight: 700;
+    transition: color .2s;
+    font-size: 18px;
+}
+
+.nav__logo {
+    vertical-align: middle;
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    transition: all .2s;
+}
+
+.nav__logo-picture {
+    height: 48px;
+    max-width: 250px;
+}
+
+.nav__menu {
+    display: inline-block;
+    list-style-type: none;
+    width: 744px;
+    align-items: center;
+    float: right;
+    padding-top: 10px;
+}
+
+.nav__menu__item {
+    display: inline-block;
+    margin-left: 30px;
+    cursor: default;
+}
+
+.salad:hover{
+    color: #6db33f;
+    cursor: pointer;
+}
+
+.nav__menu__item-arrow {
+    transform: rotate(45deg) translateY(-6px);
+    -webkit-transform: rotate(45deg) translateY(-6px);
+    border: solid #191e1e;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 3px;
+    cursor: default;
+}
+
+.big-text {
+    font-size: 27px;
+    font-weight: 400;
+    color: #333;
+    line-height: 50px;
+}
+
+.description {
+    margin-bottom: 80px;
+}
+
+.description h1 {
+    margin-bottom: 20px;
+}
+
+.description p {
+    max-width: 1040px;
+    margin: 0;
+}
+
+.content {
+    background-color: #ebf2f2;
+    padding: 50px 0;
+}
+
+.content__whitespace {
+    width: 16.5%;
+}
+
+.content__info {
+    width: 82.5%;
+    margin-right: 0;
+}
+
+.content__info__left {
+    margin-right: 22px;
+}
+
+.content__info__right{
+    position: relative;
+    top: 23px;
+}
+
+.content__info__right, .content__info__left {
+    width: 47.5%;
+    display: inline-block;
+}
+
+.content__info__item {
+    padding: 40px 30px;
+    margin-bottom: 25px;
+    background: #fff;
+    display: block;
+    text-decoration: none;
+    height: 188px;
+}
+
+.content__info__item:hover{
+    transform: translateY(-3px);
+    top: -3px;
+    box-shadow: 0 10px 20px 0 rgba(108,135,135,.2);
+}
+
+.content__info__item-picture {
+    width: 18.5%;
+    margin: 0;
+    display: inline-block;
+}
+
+.content__info__item-picture img {
+    height: 60px;
+}
+
+.content__info__item-description {
+    margin: -60px 0 0 110px;
+}
+
+.content__info__item-description p {
+    color: #333;
+    font-size: 19px;
+}
+
+.content__info__item-description h3 {
+    margin-bottom: 20px;
+}
+
+.content__info__item-description h3, .content__info__item-description p {
+    color: #000;
+}

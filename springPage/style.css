@@ -98,6 +98,7 @@ img {
 .content {
     background-color: #ebf2f2;
     padding: 50px 0;
+    position: relative;
 }
 
 .content__info {
@@ -264,4 +265,38 @@ img {
     .content__info__item-description {
         margin: 0;
     }
+}
+
+.mistake {
+    display: none;
+}
+
+.custom-input {
+    position: relative;
+}
+
+.custom-input:after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: url(images/search.png) no-repeat;
+    background-size: cover;
+    top: 7px;
+    left: 345px;
+}
+
+input {
+    display: block;
+    margin-left: 54px;
+    font-size: 16px;
+    padding: 10px;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 51px;
+}
+
+input:focus {
+    outline: none;
 }

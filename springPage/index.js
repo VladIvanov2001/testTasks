@@ -56,6 +56,9 @@ const attention = document.createElement('p');
 attention.innerHTML = 'There is no result';
 
 function renderArr(arr){
+    while (documentForBlocks.firstChild) {
+        documentForBlocks.removeChild(documentForBlocks.firstChild);
+    }
     arr.forEach((elem, index) => {
         const newItem = document.createElement('a');
         newItem.classList.add('content__info__item');
@@ -81,9 +84,17 @@ function renderArr(arr){
 renderArr(arrDescription);
 
 inputForSearch.addEventListener('keyup', () => {
-    while (documentForBlocks.firstChild) {
+
+    /*while (documentForBlocks.firstChild) {
         documentForBlocks.removeChild(documentForBlocks.firstChild);
-    }
+    }*/
+
+    /*const range = document.createRange();
+    range.selectNodeContents(documentForBlocks);
+    range.deleteContents();*/
+
+    documentForBlocks.innerHTML = '';
+
     let finalResult = returnArr(arrDescription, inputForSearch.value);
     if (finalResult.length === 0) {
         documentForBlocks.append(attention);
@@ -100,3 +111,5 @@ const obj = {
 };
 
 arrDescription.push(obj);
+
+renderArr(arrDescription);

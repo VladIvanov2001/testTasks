@@ -89,11 +89,11 @@ inputForSearch.addEventListener('keyup', () => {
         documentForBlocks.removeChild(documentForBlocks.firstChild);
     }*/
 
-    /*const range = document.createRange();
+    const range = document.createRange();
     range.selectNodeContents(documentForBlocks);
-    range.deleteContents();*/
+    range.deleteContents();
 
-    documentForBlocks.innerHTML = '';
+    //documentForBlocks.innerHTML = '';
 
     let finalResult = returnArr(arrDescription, inputForSearch.value);
     if (finalResult.length === 0) {

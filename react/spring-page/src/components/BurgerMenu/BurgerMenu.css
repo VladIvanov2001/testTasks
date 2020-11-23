@@ -1,0 +1,30 @@
+.nav__menu__mobile {
+    display: none;
+    margin: 0;
+    justify-content: space-between;
+}
+
+
+.hamburger-menu {
+    padding: 10px;
+}
+
+.hamburger-menu__bar {
+    width: 19px;
+    height: 3px;
+    background: #191e1e;
+    margin: 0 0 3px;
+    transition: background .2s;
+}
+
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+    .nav__menu__mobile {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .nav__menu__mobile {
+        display: block;
+    }
+}

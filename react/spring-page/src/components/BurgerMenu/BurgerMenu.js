@@ -1,5 +1,5 @@
 import './BurgerMenu.css'
-function BurgerMenu() {
+export function BurgerMenu() {
     return(
         <div className="nav__menu__mobile">
             <div className="hamburger-menu">
@@ -10,5 +10,3 @@ function BurgerMenu() {
         </div>
     )
 }
-
-export default BurgerMenu

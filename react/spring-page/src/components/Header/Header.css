@@ -45,23 +45,9 @@
     width: 744px;
 }
 
-.nav__menu__item {
-    margin-left: 30px;
-    cursor: default;
-}
-
 .salad:hover {
     color: #6db33f;
     cursor: pointer;
-}
-
-.nav__menu__item-arrow {
-    transform: rotate(45deg) translateY(-6px);
-    border: solid #191e1e;
-    border-width: 0 1px 1px 0;
-    display: inline-block;
-    padding: 3px;
-    cursor: default;
 }
 
 @media screen and (min-width: 600px) and (max-width: 1000px) {

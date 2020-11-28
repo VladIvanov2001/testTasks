@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './Main.css'
-import * as ArrayInfo from '../../constants/SpringInfo'
-import springBoot from '../../images/spring-boot.svg'
+import {arrDescription} from '../../constants/SpringInfo'
 import Description from "../Description/Description";
 
-
-function returnArr(arr, string) {
-    let newArr = [];
-    arr.forEach((elem, index) => {
-        if (elem.name.toLowerCase().includes(string.toLowerCase()) || elem.description.toLowerCase().includes(string.toLowerCase())) {
-            newArr.push(elem);
-        }
-    });
-    return newArr;
-}
-
-function Main() {
+export function Main() {
     const [name, setName] = useState('');
-    const newArr = returnArr(ArrayInfo.arrDescription, name);
+    const [arr, setArr] = useState([]);
+
+    useEffect(() => {
+        setArr(arrDescription.filter(elem =>
+            elem.name.toLowerCase().includes(name.toLowerCase()) || elem.description.toLowerCase().includes(name.toLowerCase()))
+        );
+    }, [name]);
+
+    useEffect(()=>{
+        setArr(
+            arrDescription
+        )
+    }, []);
 
     return (
         <main className="main">
@@ -29,10 +29,10 @@ function Main() {
                 </label>
                 <div className="container">
                     <div className="content__info">
-                        { newArr.length !== 0 ?(
-                            newArr.map((item) => {
+                        {arr.length !== 0 ? (
+                            arr.map((item, idx) => {
                                 return (
-                                    <a className='content__info__item'>
+                                    <a key={idx} className='content__info__item'>
                                         <div className='content__info__item-picture'>
                                             <img alt="image" src={item.image}/>
                                         </div>
@@ -50,5 +50,3 @@ function Main() {
         </main>
     )
 }
-
-export default Main

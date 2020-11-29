@@ -2,19 +2,18 @@ import {initialState} from "../store";
 
 export const setArrForSearch = (newArr) =>{
 return {
-    // eslint-disable-next-line no-undef
-    type: SET_SEARCH_ARR,
+    type: 'SET_SEARCH_ARR',
     payload: newArr
 };
 };
 
 export const searchTags = (state = initialState, action) => {
+    console.log(action.payload);
     switch (action.type) {
-        // eslint-disable-next-line no-undef
-        case SET_SEARCH_ARR: {
+        case 'SET_SEARCH_ARR': {
             return {
                 ...state,
-                setArrForSearch: action.payload,
+                arr: action.payload,
             };
         }
         default:

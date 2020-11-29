@@ -4,21 +4,23 @@ import {arrDescription} from '../../constants/SpringInfo'
 import Description from "../Description/Description";
 import {initialState, rootReducer} from "../../redux/store";
 import {useDispatch, useSelector} from "react-redux";
+import {setArrForSearch, searchTags} from "../../redux/actions/action";
 
 export function Main() {
     const [name, setName] = useState('');
     const dispatch = useDispatch();
     const arrData = useSelector(state => state.arr);
 
+    // useEffect(() => {
+    //     setArr(arrDescription.filter(elem =>
+    //         elem.name.toLowerCase().includes(name.toLowerCase()) || elem.description.toLowerCase().includes(name.toLowerCase()))
+    //     );
+    // }, [name]);
 
-    useEffect(() => {
-        setArr(arrDescription.filter(elem =>
-            elem.name.toLowerCase().includes(name.toLowerCase()) || elem.description.toLowerCase().includes(name.toLowerCase()))
-        );
-    }, [name]);
 
     useEffect(()=>{
-       dispatch()
+       dispatch(setArrForSearch(arrDescription));
+       console.log(arrDescription)
     }, []);
 
     return (
@@ -31,8 +33,8 @@ export function Main() {
                 </label>
                 <div className="container">
                     <div className="content__info">
-                        {arr.length !== 0 ? (
-                            arr.map((item, idx) => {
+                        {arrData.length !== 0 ? (
+                            arrData.map((item, idx) => {
                                 return (
                                     <a key={idx} className='content__info__item'>
                                         <div className='content__info__item-picture'>

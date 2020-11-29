@@ -2,10 +2,14 @@ import React, {useState, useEffect} from 'react';
 import './Main.css'
 import {arrDescription} from '../../constants/SpringInfo'
 import Description from "../Description/Description";
+import {initialState, rootReducer} from "../../redux/store";
+import {useDispatch, useSelector} from "react-redux";
 
 export function Main() {
     const [name, setName] = useState('');
-    const [arr, setArr] = useState([]);
+    const dispatch = useDispatch();
+    const arrData = useSelector(state => state.arr);
+
 
     useEffect(() => {
         setArr(arrDescription.filter(elem =>
@@ -14,9 +18,7 @@ export function Main() {
     }, [name]);
 
     useEffect(()=>{
-        setArr(
-            arrDescription
-        )
+       dispatch()
     }, []);
 
     return (

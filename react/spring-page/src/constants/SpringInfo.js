@@ -39,4 +39,4 @@ export const arrDescription = [
       'Provides core support for dependency injection, transaction management, web apps, data access, messaging, and more.',
     image: 'images/spring-security.svg',
   },
-]
+];

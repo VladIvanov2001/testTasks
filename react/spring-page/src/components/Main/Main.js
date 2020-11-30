@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import './Main.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { arrDescription } from '../../constants/SpringInfo'
-import Description from '../Description/Description'
-import { initialState, rootReducer } from '../../redux/store'
+import { Description } from '../Description/Description'
+// import { initialState, rootReducer } from '../../redux/store'
 import { setArrForSearch, searchTags } from '../../redux/actions/action'
 
 export function Main() {

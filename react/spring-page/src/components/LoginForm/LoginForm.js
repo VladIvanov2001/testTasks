@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 export function LoginForm() {
-  const [login, setLogin] = useState('')
-  const [password, setPassword] = useState('')
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
 
   // function checkData() {
   //     if(login === 'admin' && password === '1234'){
@@ -24,5 +24,5 @@ export function LoginForm() {
       />
       <button type="submit">Send</button>
     </form>
-  )
+  );
 }

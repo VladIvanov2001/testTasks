@@ -1,0 +1,151 @@
+.content {
+    background-color: #ebf2f2;
+    padding: 50px 0;
+    position: relative;
+}
+
+.content__info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-right: 75px;
+}
+
+.content__info__item {
+    padding: 40px 30px;
+    background: #fff;
+    display: block;
+    text-decoration: none;
+    width: 365px;
+    margin: 0 20px 26px 0;
+}
+
+.content__info__item:hover {
+    transform: translateY(-3px);
+    top: -3px;
+    box-shadow: 0 10px 20px 0 rgba(108, 135, 135, .2);
+}
+
+.content__info__item-picture {
+    width: 18.5%;
+    margin: 0;
+    display: inline-block;
+}
+
+.content__info__item-picture img {
+    height: 60px;
+}
+
+.content__info__item-description {
+    margin: -60px 0 0 110px;
+}
+
+.content__info__item-description p {
+    color: #333;
+    font-size: 19px;
+}
+
+.content__info__item-description h3 {
+    margin-bottom: 20px;
+}
+
+.content__info__item-description h3, .content__info__item-description p {
+    color: #000;
+}
+
+
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+    .main {
+        position: relative;
+        top: 80px;
+    }
+
+    .content__info {
+        width: auto;
+        margin-right: auto;
+    }
+
+    .content__info__item {
+        width: 310px;
+        margin-right: 30px;
+    }
+
+    .container {
+        max-width: 800px;
+    }
+
+    .description {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .content__info__item {
+        width: 84%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main {
+        position: relative;
+        top: 80px;
+    }
+
+    .content__info {
+        width: auto;
+        margin-right: auto;
+    }
+
+    .content__info__item {
+        width: 84%;
+        margin-right: auto;
+        margin-left: auto;
+
+    }
+
+    .container {
+        max-width: 800px;
+    }
+
+    .description {
+        padding: 10px;
+    }
+
+    .content__info__item-description {
+        margin: 0;
+    }
+}
+
+.mistake {
+    display: none;
+}
+
+.custom-input {
+    position: relative;
+}
+
+.custom-input:after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: url(../../images/search.png) no-repeat;
+    background-size: cover;
+    right: 395px;
+    top: 7px;
+}
+
+input {
+    display: block;
+    margin-left: 54px;
+    font-size: 16px;
+    padding: 10px;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 51px;
+}
+
+input:focus {
+    outline: none;
+}

@@ -1,7 +1,8 @@
-import './Header.css'
-import logoSpring from '../../images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg'
-import { BurgerMenu } from '../BurgerMenu/BurgerMenu'
-import { ListItem } from '../ListItem/ListItem'
+import React from 'react';
+import './Header.css';
+import logoSpring from '../../images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg';
+import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
+import { ListItem } from '../ListItem/ListItem';
 
 export function Header() {
   return (
@@ -27,5 +28,5 @@ export function Header() {
         </div>
       </nav>
     </header>
-  )
+  );
 }

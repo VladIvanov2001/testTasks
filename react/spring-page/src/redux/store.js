@@ -1,9 +1,5 @@
 import { combineReducers, createStore } from 'redux';
-import { searchTags } from './actions/action';
-
-export const initialState = {
-  arr: [],
-};
+import { searchTags } from './reducers/reduce';
 
 export function rootReducer() {
   combineReducers({

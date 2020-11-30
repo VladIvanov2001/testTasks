@@ -1,7 +1,8 @@
-import './ListItem.css'
+import React from 'react';
+import './ListItem.css';
 
 export const ListItem = (props) => {
-  const { hasArrow, name } = props
+  const { hasArrow, name } = props;
   return (
     <li className="nav__menu__item">
       <div>
@@ -9,5 +10,5 @@ export const ListItem = (props) => {
         {hasArrow && <div className="nav__menu__item-arrow" />}
       </div>
     </li>
-  )
-}
+  );
+};

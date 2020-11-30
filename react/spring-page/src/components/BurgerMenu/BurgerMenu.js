@@ -1,4 +1,5 @@
-import './BurgerMenu.css'
+import React from 'react';
+import './BurgerMenu.css';
 
 export function BurgerMenu() {
   return (
@@ -9,5 +10,5 @@ export function BurgerMenu() {
         <div className="hamburger-menu__bar" />
       </div>
     </div>
-  )
+  );
 }

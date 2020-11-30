@@ -1,5 +1,5 @@
-import React from 'react'
-import './Description.css'
+import React from 'react';
+import './Description.css';
 
 export function Description() {
   return (
@@ -13,5 +13,5 @@ export function Description() {
         is&nbsp;modular by&nbsp;design.
       </p>
     </div>
-  )
+  );
 }

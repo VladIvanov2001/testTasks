@@ -1,8 +1,9 @@
-import './App.css'
-import { Route, BrowserRouter, Switch } from 'react-router-dom'
-import { Header } from './components/Header/Header'
-import { Main } from './components/Main/Main'
-import { LoginForm } from './components/LoginForm/LoginForm'
+import './App.css';
+import React from 'react';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Header } from './components/Header/Header';
+import { Main } from './components/Main/Main';
+import { LoginForm } from './components/LoginForm/LoginForm';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         </Switch>
       </div>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -9,6 +9,7 @@ export function Header() {
     <header className="header">
       <nav className="nav">
         <div className="container nav-container">
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a href="" className="nav__logo">
             <img
               className="nav__logo-picture"

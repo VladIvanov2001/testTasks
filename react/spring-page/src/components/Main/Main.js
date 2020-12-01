@@ -3,20 +3,18 @@ import './Main.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { arrDescription } from '../../constants/SpringInfo';
 import { Description } from '../Description/Description';
-// import { initialState, rootReducer } from '../../redux/store'
 import { setArrForSearch } from '../../redux/actions/action';
 
 export function Main() {
   const [name, setName] = useState('');
   const dispatch = useDispatch();
-  const arrData = useSelector((state) => state.arr);
+  const arrData = useSelector((state) => state.searchTags.arr);
 
-  // useEffect(() => {
-  //     setArr(arrDescription.filter(elem =>
-  // eslint-disable-next-line max-len
-  //         elem.name.toLowerCase().includes(name.toLowerCase()) || elem.description.toLowerCase().includes(name.toLowerCase()))
-  //     );
-  // }, [name]);
+  useEffect(() => {
+    // eslint-disable-next-line max-len
+    dispatch(setArrForSearch(arrDescription.filter((elem) => elem.name.toLowerCase().includes(name.toLowerCase())
+      || elem.description.toLowerCase().includes(name.toLowerCase()))));
+  }, [name]);
 
   useEffect(() => {
     dispatch(setArrForSearch(arrDescription));
@@ -38,7 +36,7 @@ export function Main() {
         </label>
         <div className="container">
           <div className="content__info">
-            {arrData.length !== 0 ? (
+            {arrData && arrData.length !== 0 ? (
               arrData.map((item, idx) => (
                 // eslint-disable-next-line react/no-array-index-key,jsx-a11y/anchor-is-valid
                 <a key={idx} className="content__info__item">

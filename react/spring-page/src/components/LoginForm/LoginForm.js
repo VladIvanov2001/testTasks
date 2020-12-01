@@ -1,14 +1,18 @@
+import './LoginForm.css';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 
 export function LoginForm() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
-  // function checkData() {
-  //     if(login === 'admin' && password === '1234'){
-  //
-  //     }
-  // }
+  const history = useHistory();
+
+  const checkData = () => {
+    if (login === 'admin' && password === '1234') {
+      history.push('/main');
+    }
+  };
 
   return (
     <form>
@@ -22,7 +26,7 @@ export function LoginForm() {
         placeholder="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">Send</button>
+      <button type="submit" onClick={checkData}>Send</button>
     </form>
   );
 }

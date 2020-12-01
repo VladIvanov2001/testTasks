@@ -1,6 +1,8 @@
 import './App.css';
 import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import {
+  Route, BrowserRouter, Switch, Redirect,
+} from 'react-router-dom';
 import { Header } from './components/Header/Header';
 import { Main } from './components/Main/Main';
 import { LoginForm } from './components/LoginForm/LoginForm';
@@ -8,6 +10,7 @@ import { LoginForm } from './components/LoginForm/LoginForm';
 function App() {
   return (
     <BrowserRouter>
+      <Redirect to="/login" />
       <div className="App">
         <Switch>
           <Route path="/main" component={Header}>

@@ -2,6 +2,7 @@ import React from 'react';
 import './ListItem.css';
 
 export const ListItem = (props) => {
+  // eslint-disable-next-line react/prop-types
   const { hasArrow, name } = props;
   return (
     <li className="nav__menu__item">

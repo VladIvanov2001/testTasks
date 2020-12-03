@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 import {
   Route, BrowserRouter, Switch, Redirect,
@@ -13,9 +12,11 @@ function App() {
       <Redirect to="/login" />
       <div className="App">
         <Switch>
-          <Route path="/main" component={Header}>
-            <Header />
-            <Main />
+          <Route path="/main">
+            <>
+              <Header />
+              <Main />
+            </>
           </Route>
           <Route path="/login" component={LoginForm} />
         </Switch>

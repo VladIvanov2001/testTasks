@@ -1,4 +1,4 @@
-const SET_SEARCH_ARR = 'SET_SEARCH_ARR';
+import { SET_SEARCH_ARR } from '../actions/action';
 
 export const initialState = {
   arr: [],
@@ -16,8 +16,3 @@ export const searchTags = (state = initialState, action) => {
       return state;
   }
 };
-
-export const setArrForSearch = (newArr) => ({
-  type: 'SET_SEARCH_ARR',
-  payload: newArr,
-});

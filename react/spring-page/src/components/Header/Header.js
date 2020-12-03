@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import logoSpring from '../../images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg';
+import logoSpring from '../../images/spring-logo.svg';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 import { ListItem } from '../ListItem/ListItem';
 
@@ -9,7 +9,7 @@ export function Header() {
     <header className="header">
       <nav className="nav">
         <div className="container nav-container">
-          <a href="" className="nav__logo">
+          <a href="/#" className="nav__logo">
             <img
               className="nav__logo-picture"
               src={logoSpring}

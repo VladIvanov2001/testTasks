@@ -8,27 +8,26 @@ import { setArrForSearch } from '../../redux/actions/action';
 export function Main() {
   const [name, setName] = useState('');
   const dispatch = useDispatch();
-  const arrData = useSelector((state) => state.searchTags.arr);
+  const arrWithInitinalMenuItems = useSelector((state) => state.searchTags.arr);
 
   useEffect(() => {
     // eslint-disable-next-line max-len
     dispatch(setArrForSearch(arrDescription.filter((elem) => elem.name.toLowerCase().includes(name.toLowerCase())
       || elem.description.toLowerCase().includes(name.toLowerCase()))));
-  }, [name]);
+  }, [dispatch, name]);
 
   useEffect(() => {
     dispatch(setArrForSearch(arrDescription));
-  }, []);
+  }, [dispatch]);
 
   return (
     <main className="main">
       <Description />
       <div className="content">
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label className="custom-input">
+        <label className="custom-input" htmlFor="search">
           <input
             type="text"
-            className="search"
+            id="search"
             placeholder="Input your words"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -36,13 +35,11 @@ export function Main() {
         </label>
         <div className="container">
           <div className="content__info">
-            {arrData && arrData.length !== 0 ? (
-              arrData.map((item, idx) => (
-                // eslint-disable-next-line react/no-array-index-key,jsx-a11y/anchor-is-valid
-                <a key={idx} className="content__info__item">
+            {arrWithInitinalMenuItems && arrWithInitinalMenuItems.length !== 0 ? (
+              arrWithInitinalMenuItems.map((item) => (
+                <a href="/#" key="card-{$idx}" className="content__info__item">
                   <div className="content__info__item-picture">
-                    {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-                    <img alt="image" src={item.image} />
+                    <img alt="logo-of-item" src={item.image} />
                   </div>
                   <div className="content__info__item-description">
                     <h3>{item.name}</h3>

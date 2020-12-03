@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import './Main.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { arrDescription } from '../../constants/SpringInfo';
+import { menuItemsDescription } from '../../constants/SpringInfo';
 import { Description } from '../Description/Description';
-import { setArrForSearch } from '../../redux/actions/action';
+import { setNecessaryElements } from '../../redux/actions/action';
 
 export function Main() {
   const [name, setName] = useState('');
   const dispatch = useDispatch();
-  const arrWithInitinalMenuItems = useSelector((state) => state.searchTags.arr);
+  const menuItems = useSelector((state) => state.searchTags.arr);
 
   useEffect(() => {
     // eslint-disable-next-line max-len
-    dispatch(setArrForSearch(arrDescription.filter((elem) => elem.name.toLowerCase().includes(name.toLowerCase())
+    dispatch(setNecessaryElements(menuItemsDescription.filter((elem) => elem.name.toLowerCase().includes(name.toLowerCase())
       || elem.description.toLowerCase().includes(name.toLowerCase()))));
   }, [dispatch, name]);
 
   useEffect(() => {
-    dispatch(setArrForSearch(arrDescription));
+    dispatch(setNecessaryElements(menuItemsDescription));
   }, [dispatch]);
 
   return (
@@ -35,9 +35,10 @@ export function Main() {
         </label>
         <div className="container">
           <div className="content__info">
-            {arrWithInitinalMenuItems && arrWithInitinalMenuItems.length !== 0 ? (
-              arrWithInitinalMenuItems.map((item) => (
-                <a href="/#" key="card-{$idx}" className="content__info__item">
+            {menuItems && menuItems.length !== 0 ? (
+              menuItems.map((item, idx) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <a href="/#" key={`сard - ${idx}`} className="content__info__item">
                   <div className="content__info__item-picture">
                     <img alt="logo-of-item" src={item.image} />
                   </div>

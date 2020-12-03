@@ -1,4 +1,4 @@
-export const arrDescription = [
+export const menuItemsDescription = [
   {
     name: 'Spring Boot',
     description:

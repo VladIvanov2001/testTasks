@@ -1,4 +1,5 @@
-import { SET_SEARCH_ARR } from '../actions/action';
+// eslint-disable-next-line import/named
+import { SET_SEARCH_ELEMENTS } from '../actions/action';
 
 export const initialState = {
   arr: [],
@@ -6,7 +7,7 @@ export const initialState = {
 
 export const searchTags = (state = initialState, action) => {
   switch (action.type) {
-    case SET_SEARCH_ARR: {
+    case SET_SEARCH_ELEMENTS: {
       return {
         ...state,
         arr: action.payload,

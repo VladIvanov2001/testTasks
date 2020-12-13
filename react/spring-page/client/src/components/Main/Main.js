@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Main.css';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import { menuItemsDescription } from '../../constants/SpringInfo';
 import { Description } from '../Description/Description';
 import { setNecessaryElements } from '../../redux/actions/action';
@@ -9,16 +10,31 @@ export function Main() {
   const [name, setName] = useState('');
   const dispatch = useDispatch();
   const menuItems = useSelector((state) => state.searchTags.arr);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     // eslint-disable-next-line max-len
-    dispatch(setNecessaryElements(menuItemsDescription.filter((elem) => elem.name.toLowerCase().includes(name.toLowerCase())
-      || elem.description.toLowerCase().includes(name.toLowerCase()))));
+    dispatch(setNecessaryElements(menuItemsDescription.filter((elem) => elem.name.toLowerCase()
+      .includes(name.toLowerCase())
+      || elem.description.toLowerCase()
+        .includes(name.toLowerCase()))));
   }, [dispatch, name]);
 
   useEffect(() => {
     dispatch(setNecessaryElements(menuItemsDescription));
   }, [dispatch]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        'http://localhost:8000/',
+      );
+
+      setData(result);
+      console.log(result);
+    };
+    fetchData();
+  }, [data]);
 
   return (
     <main className="main">
@@ -46,6 +62,7 @@ export function Main() {
                     <h3>{item.name}</h3>
                     <p>{item.description}</p>
                   </div>
+                  <p>{data}</p>
                 </a>
               ))
             ) : (

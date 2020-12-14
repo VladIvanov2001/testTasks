@@ -8,6 +8,10 @@ export function LoginForm() {
 
   const history = useHistory();
 
+  useEffect(() => {
+
+  }, [login, password]);
+
   const checkData = () => {
     if (login === 'admin' && password === '1234') {
       history.push('/main');

@@ -8,7 +8,7 @@ app.use(cors());
 
 app.get('/', (req, res) => {
     res.header("Content-Type",'application/json');
-    res.json(springInfo)
+    res.send(JSON.stringify(springInfo));
 })
 console.log(springInfo)
 app.get('/newendpoint', (req, res) => {

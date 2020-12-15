@@ -1,21 +1,22 @@
 import './LoginForm.css';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
+import API from '../../utils/API';
 
 export function LoginForm() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-
   const history = useHistory();
 
-  useEffect(() => {
-
-  }, [login, password]);
-
-  const checkData = () => {
-    if (login === 'admin' && password === '1234') {
+  const fetchLogin = async () => {
+    await API.post('/register', {
+      username: login,
+      password,
+    }).then(() => {
       history.push('/main');
-    }
+    }, (error) => {
+      console.log(error);
+    });
   };
 
   return (
@@ -30,7 +31,7 @@ export function LoginForm() {
         placeholder="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit" onClick={checkData}>Send</button>
+      <button type="submit" onClick={fetchLogin}>Send</button>
     </form>
   );
 }

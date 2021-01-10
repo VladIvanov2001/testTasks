@@ -3,24 +3,27 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import API from '../../utils/API';
 
-export function LoginForm() {
+// eslint-disable-next-line react/prop-types
+export function LoginForm({ isLogin }) {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
-
   const fetchLogin = async () => {
-    await API.post('/register', {
-      username: login,
-      password,
-    }).then(() => {
+    try {
+      const response = await API.post('/signup', {
+        username: login,
+        password,
+      });
+      localStorage.setItem('token', response.data.token);
+      isLogin(true);
       history.push('/main');
-    }, (error) => {
-      console.log(error);
-    });
+    } catch (e) {
+      console.log(`Axios request failed: ${e}`);
+    }
   };
 
   return (
-    <form>
+    <form onSubmit={(e) => e.preventDefault()}>
       <input
         type="text"
         placeholder="login"

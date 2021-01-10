@@ -1,26 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Route, BrowserRouter, Switch, Redirect,
+  Route, BrowserRouter,
 } from 'react-router-dom';
 import { Header } from './components/Header/Header';
 import { Main } from './components/Main/Main';
 import { LoginForm } from './components/LoginForm/LoginForm';
+import { Registration } from './components/Registration/Registration';
 
+// eslint-disable-next-line react/prop-types
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <BrowserRouter>
-      <Redirect to="/login" />
-      <div className="App">
-        <Switch>
-          <Route path="/main">
-            <>
-              <Header />
-              <Main />
-            </>
-          </Route>
-          <Route path="/login" component={LoginForm} />
-        </Switch>
-      </div>
+      <Route
+        path="/login"
+        render={() => (
+          <LoginForm
+            isLogin={setIsLoggedIn}
+          />
+        )}
+      />
+      {isLoggedIn
+      && (
+        <Route path="/main">
+          <>
+            <Header />
+            <Main />
+          </>
+        </Route>
+      )}
+      <Route
+        path="/registration"
+        render={() => (
+          <Registration
+            isLogin={setIsLoggedIn}
+          />
+        )}
+      />
     </BrowserRouter>
   );
 }

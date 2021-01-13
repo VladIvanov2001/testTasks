@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Main.css';
-import { useDispatch } from 'react-redux';
-import { menuItemsDescription } from '../../constants/SpringInfo';
 import { Description } from '../Description/Description';
-import { setNecessaryElements } from '../../redux/actions/action';
 import API from '../../utils/API';
 
 export function Main() {
   const [name, setName] = useState('');
-  const dispatch = useDispatch();
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // eslint-disable-next-line max-len
     const fetchSearch = async () => {
       const result = await API.get('/');
       const filtredArr = result.data.filter((elem) => elem.name.toLowerCase()
@@ -31,10 +26,6 @@ export function Main() {
     };
     fetchData();
   }, []);
-
-  useEffect(() => {
-    dispatch(setNecessaryElements(menuItemsDescription));
-  }, [dispatch]);
 
   return (
     <main className="main">

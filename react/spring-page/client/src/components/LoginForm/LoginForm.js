@@ -10,7 +10,7 @@ export function LoginForm({ isLogin }) {
   const history = useHistory();
   const fetchLogin = async () => {
     try {
-      const response = await API.post('/signup', {
+      const response = await API.post('/auth/signup', {
         username: login,
         password,
       });

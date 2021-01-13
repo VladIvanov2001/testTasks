@@ -4,7 +4,6 @@ import { useHistory } from 'react-router';
 import API from '../../utils/API';
 import { useForm } from '../../utils/useForm';
 
-// eslint-disable-next-line react/prop-types
 export function Registration({ isLogin }) {
   const {
     handleChange,

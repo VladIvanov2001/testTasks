@@ -8,9 +8,10 @@
     "jsx-a11y"
   ],
   "rules": {
-    "semi": [2, "always"],
+    "semi": [1, "always"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "quotes": [2, "single", { "avoidEscape": true }],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "react/prop-types": 0
   }
 }

@@ -13,7 +13,7 @@ export function Registration({ isLogin }) {
   } = useForm();
   const history = useHistory();
   const fetchLogin = async () => {
-    await API.post('/registration', {
+    await API.post('auth/registration', {
       username: values.username,
       password: values.password,
       email: values.email,

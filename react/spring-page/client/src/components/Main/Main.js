@@ -9,11 +9,11 @@ export function Main() {
 
   useEffect(() => {
     const fetchSearch = async () => {
-      const result = await API.get('/');
+      const result = await API.get('/info/spring');
       const filtredArr = result.data.filter((elem) => elem.name.toLowerCase()
         .includes(name.toLowerCase())
-          || elem.description.toLowerCase()
-            .includes(name.toLowerCase()));
+        || elem.description.toLowerCase()
+          .includes(name.toLowerCase()));
       setData(filtredArr);
     };
     fetchSearch();
@@ -21,7 +21,7 @@ export function Main() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await API.get('/');
+      const result = await API.get('/info/spring');
       setData(result.data);
     };
     fetchData();

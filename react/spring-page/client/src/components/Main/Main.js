@@ -9,12 +9,9 @@ export function Main() {
 
   useEffect(() => {
     const fetchSearch = async () => {
-      const result = await API.get('/info/spring');
-      const filtredArr = result.data.filter((elem) => elem.name.toLowerCase()
-        .includes(name.toLowerCase())
-        || elem.description.toLowerCase()
-          .includes(name.toLowerCase()));
-      setData(filtredArr);
+      console.log(name);
+      const result = await API.get(`/info/spring?filter=${name}`);
+      setData(result.data);
     };
     fetchSearch();
   }, [name]);

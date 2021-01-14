@@ -4,7 +4,6 @@ const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 const port = process.env.PORT;
-const spring = require('./info');
 const routes = require('./routes/index');
 app.use(cors());
 

@@ -14,12 +14,14 @@ export function Registration({ isLogin }) {
   const history = useHistory();
   const fetchLogin = async () => {
     await API.post('auth/registration', {
-      username: values.username,
-      password: values.password,
-      email: values.email,
-      firstName: values.firstName,
-      lastName: values.lastName,
-      age: values.age,
+      user: {
+        username: values.username,
+        password: values.password,
+        email: values.email,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        age: values.age,
+      },
     })
       .then(() => {
         if (Object.keys(errors).length === 0) {

@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require('../sequelize');
 
-module.exports  = sequelize.define("infoSpring", {
+module.exports = sequelize.define("infoSpring", {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -23,5 +23,3 @@ module.exports  = sequelize.define("infoSpring", {
 }, {
     tableName: 'info'
 });
-
-

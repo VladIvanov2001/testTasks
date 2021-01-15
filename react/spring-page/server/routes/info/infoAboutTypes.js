@@ -11,21 +11,18 @@ sequelize.sync().then(result => {
 
 router.get('/spring', async (req, res) => {
     const nameForFilter = req.query.filter;
-    const resultFromDB = await InfoAboutSpring.findAll({attributes: ['name', 'description', 'image']});
-    const resultForReact = resultFromDB.map(el => {
-        const data = el.get();
-        return {
-            name: data.name,
-            description: data.description,
-            image: data.image,
-        }
-    });
-    const filtredArr = resultForReact.filter((elem) => elem.name.toLowerCase()
+    try {
+        const result = await InfoAboutSpring.findAll({attributes: ['name', 'description', 'image']});
+    }
+    catch (e){
+        next(e);
+    }
+    const filtredArr = result.filter((elem) => elem.name.toLowerCase()
             .includes(nameForFilter.toLowerCase())
         || elem.description.toLowerCase()
             .includes(nameForFilter.toLowerCase()));
 
-    return res.send(filtredArr);
+    return res.json(filtredArr);
 });
 
 module.exports = router;

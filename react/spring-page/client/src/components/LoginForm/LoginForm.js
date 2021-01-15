@@ -11,8 +11,10 @@ export function LoginForm({ isLogin }) {
   const fetchLogin = async () => {
     try {
       const response = await API.post('auth/signup', {
-        username: login,
-        password,
+        user: {
+          username: login,
+          password,
+        },
       });
       localStorage.setItem('token', response.data.token);
       isLogin(true);

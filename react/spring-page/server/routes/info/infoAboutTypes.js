@@ -11,12 +11,12 @@ sequelize.sync().then(result => {
 
 router.get('/spring', async (req, res) => {
     const nameForFilter = req.query.filter;
-    const resultFromDB = await InfoAboutSpring.findAll({attributes: ['name', 'decription', 'image']});
+    const resultFromDB = await InfoAboutSpring.findAll({attributes: ['name', 'description', 'image']});
     const resultForReact = resultFromDB.map(el => {
         const data = el.get();
         return {
             name: data.name,
-            description: data.decription,
+            description: data.description,
             image: data.image,
         }
     });

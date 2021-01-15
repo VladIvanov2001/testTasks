@@ -4,31 +4,28 @@ const bcrypt = require('bcryptjs');
 const keys = require('../../keys');
 const connection = require('../../db');
 const router = express.Router();
+const sequelize = require('../../sequelize');
+const User = require('../../models/User');
 
-router.post('/signup', function (request, response, next) {
+
+router.post('/signup', async function (request, response, next) {
     const user = request.body;
-    console.log(request.body);
-    connection.connect(function (err) {
-        if (err) {
-            return next(err);
-        }
-        console.log('MySQL connection was successfully installed');
-        connection.query('SELECT username, password from users WHERE username = ?;',
-            [user.username], function (err, result) {
-                if (err) {
-                    return next(err);
-                }
-                if (bcrypt.compare(user.password, result[0].password)) {
-                    const token = jwt.sign({
-                        login: user.username,
-                    }, keys.jwt, {expiresIn: 60 * 60});
-                    return response.json({
-                        token: token,
-                    });
-                }
-            })
-
+    const resultForDB = await User.findOne({
+        where: {
+            name: user.username,
+        },
+        attributes: ['name', 'password']
+    }, {
+        raw: true,
     });
+    if (resultForDB.dataValues.name && bcrypt.compare(user.password, resultForDB.dataValues.password)) {
+        const token = jwt.sign({
+            login: user.username,
+        }, keys.jwt, {expiresIn: 60 * 60});
+        return response.json({
+            token: token,
+        });
+    }
 })
 
 module.exports = router;

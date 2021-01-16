@@ -18,7 +18,9 @@ router.post('/registration', async function (request, response, next) {
         });
         return response.send(200);
     } catch (e) {
-        response.status(e.statusCode).send({});
+        response.status(400).json({
+            message: 'There is no all data'
+        });
     }
 })
 module.exports = router;

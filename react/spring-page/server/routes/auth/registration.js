@@ -18,7 +18,7 @@ router.post('/registration', async function (request, response, next) {
         });
         return response.send(200);
     } catch (e) {
-        response.send(e.statusCode);
+        response.status(e.statusCode).send({});
     }
 })
 module.exports = router;

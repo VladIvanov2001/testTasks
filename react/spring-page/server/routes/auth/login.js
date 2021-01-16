@@ -24,7 +24,7 @@ router.post('/signup', async function (request, response, next) {
             });
         }
     } catch (e){
-        response.send(e.statusCode);
+        response.status(e.statusCode).send({});
     }
 })
 

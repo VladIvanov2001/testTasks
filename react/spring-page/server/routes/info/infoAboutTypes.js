@@ -14,7 +14,7 @@ router.get('/spring', async (req, res) => {
         return res.json(filteredArr);
     }
     catch (e){
-        res.send(e.statusCode);
+        res.status(e.statusCode).send({});
     }
 });
 

@@ -29,7 +29,7 @@ module.exports = sequelize.define("user", {
         allowNull: false
     },
     age: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
     },
 }, {

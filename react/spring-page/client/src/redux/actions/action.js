@@ -1,6 +1,6 @@
 export const SET_IS_LOGIN = 'SET_IS_LOGIN';
 
-export const setLoginIsTrue = (isLogin) => ({
+export const setLoginIsTrue = (userJWT) => ({
   type: SET_IS_LOGIN,
-  payload: isLogin,
+  payload: userJWT,
 });

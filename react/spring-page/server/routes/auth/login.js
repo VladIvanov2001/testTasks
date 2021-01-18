@@ -6,21 +6,19 @@ const router = express.Router();
 const User = require('../../models/User');
 
 router.post('/signup', async function (request, response, next) {
-    const {user} = request.body;
-    console.log(user);
+    const {username, password} = request.body;
     try {
         const necessaryUser = await User.findOne({
             raw: true,
             where: {
-                name: user.username,
+                name: username,
             },
             attributes: ['name', 'password', 'id']
         });
-        console.log(necessaryUser);
         if (!necessaryUser) {
             new Error("There is no necessary user");
         }
-        if (necessaryUser.name && await bcrypt.compare(user.password, necessaryUser.password)) {
+        if (necessaryUser.name && await bcrypt.compare(password, necessaryUser.password)) {
             const token = jwt.sign({
                 id: necessaryUser.id
             }, keys.jwt, {expiresIn: 60 * 60});

@@ -4,24 +4,22 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import API from '../../utils/API';
 import { setLoginIsTrue } from '../../redux/actions/action';
-import { store } from '../../redux/store';
 
 export function LoginForm() {
   const [login, setLogin] = useState('');
   const dispatch = useDispatch();
+
   const [password, setPassword] = useState('');
   const history = useHistory();
   const fetchLogin = async (event) => {
     try {
       event.preventDefault();
       const response = await API.post('auth/signup', {
-        user: {
-          username: login,
-          password,
-        },
+        username: login,
+        password,
       });
       localStorage.setItem('token', response.data.token);
-      dispatch(setLoginIsTrue(true));
+      dispatch(setLoginIsTrue(response.data.token));
       history.push('/main');
     } catch (e) {
       console.log(`Axios request failed: ${e}`);

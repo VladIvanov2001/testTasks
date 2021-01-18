@@ -18,22 +18,16 @@ export function Registration() {
   } = useForm();
   password.current = watch('password', '');
   const onSubmit = async (data) => {
-    await API.post('auth/registration', {
-      user: {
-        username: data.username,
-        password: data.password,
-        email: data.email,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        age: data.age,
-      },
-    })
-      .then(() => {
-        if (Object.keys(errors).length === 0) {
-          dispatch(setLoginIsTrue(true));
-          history.push('/main');
-        }
-      });
+    const result = await API.post('auth/registration', {
+      username: data.username,
+      password: data.password,
+      email: data.email,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      age: data.age,
+    });
+    dispatch(setLoginIsTrue(result.data.token));
+    history.push('/main');
   };
 
   return (

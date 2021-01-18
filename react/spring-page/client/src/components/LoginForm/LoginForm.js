@@ -1,15 +1,18 @@
 import './LoginForm.css';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import API from '../../utils/API';
+import { setLoginIsTrue } from '../../redux/actions/action';
 
-// eslint-disable-next-line react/prop-types
-export function LoginForm({ isLogin }) {
+export function LoginForm() {
   const [login, setLogin] = useState('');
+  const dispatch = useDispatch();
   const [password, setPassword] = useState('');
   const history = useHistory();
-  const fetchLogin = async () => {
+  const fetchLogin = async (event) => {
     try {
+      event.preventDefault();
       const response = await API.post('auth/signup', {
         user: {
           username: login,
@@ -17,7 +20,7 @@ export function LoginForm({ isLogin }) {
         },
       });
       localStorage.setItem('token', response.data.token);
-      isLogin(true);
+      dispatch(setLoginIsTrue(true));
       history.push('/main');
     } catch (e) {
       console.log(`Axios request failed: ${e}`);
@@ -25,7 +28,7 @@ export function LoginForm({ isLogin }) {
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={fetchLogin}>
       <input
         type="text"
         placeholder="login"
@@ -36,7 +39,7 @@ export function LoginForm({ isLogin }) {
         placeholder="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit" onClick={fetchLogin}>Send</button>
+      <button type="submit">Send</button>
     </form>
   );
 }

@@ -1,26 +1,28 @@
 import './Registration.css';
-import React from 'react';
+import React, { useRef } from 'react';
+import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
 import API from '../../utils/API';
-import { useForm } from '../../utils/useForm';
 
 export function Registration({ isLogin }) {
+  const history = useHistory();
+  const password = useRef({});
   const {
-    handleChange,
-    values,
+    register,
     handleSubmit,
     errors,
+    watch,
   } = useForm();
-  const history = useHistory();
-  const fetchLogin = async () => {
+  password.current = watch('password', '');
+  const onSubmit = async (data) => {
     await API.post('auth/registration', {
       user: {
-        username: values.username,
-        password: values.password,
-        email: values.email,
-        firstName: values.firstName,
-        lastName: values.lastName,
-        age: values.age,
+        username: data.username,
+        password: data.password,
+        email: data.email,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        age: data.age,
       },
     })
       .then(() => {
@@ -32,78 +34,109 @@ export function Registration({ isLogin }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <input
           type="text"
           name="username"
           placeholder="username"
-          value={values.username}
-          onChange={handleChange}
+          ref={register({
+            required: true,
+            minLength: 3,
+          })}
         />
-        {errors.username && <p className="error">{errors.username}</p>}
+        {errors.username && errors.username.type === 'required'
+        && <p>This is required</p>}
+        {errors.username && errors.username.type === 'minLength'
+        && <p>Minimal length is 3</p>}
       </div>
       <div>
         <input
           type="text"
           name="email"
           placeholder="email"
-          value={values.email}
-          onChange={handleChange}
+          ref={register({
+            required: true,
+            pattern: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+          })}
         />
-        {errors.email && <p className="error">{errors.email}</p>}
+        {errors.email && errors.email.type === 'required'
+        && <p>This is required</p>}
+        {errors.email && errors.email.type === 'pattern'
+        && <p>Please, input correct email</p>}
       </div>
       <div>
         <input
           type="text"
           name="password"
           placeholder="password"
-          value={values.password}
-          onChange={handleChange}
+          ref={register({
+            required: true,
+            minLength: 4,
+            pattern: /^(?:[0-9]+[a-z]|[a-z]+[0-9])[a-z0-9]*$/i,
+          })}
         />
-        {errors.password && <p className="error">{errors.password}</p>}
+        {errors.password && errors.password.type === 'required'
+        && <p>This is required</p>}
+        {errors.password && errors.password.type === 'minLength'
+        && <p>Minimal length is 4</p>}
+        {errors.password && errors.password.type === 'pattern'
+        && <p>Password should at least 1 number and 1 letter</p>}
       </div>
       <div>
         <input
           type="text"
           name="repeatPassword"
           placeholder="repeat password"
-          value={values.repeatPassword}
-          onChange={handleChange}
+          ref={register({
+            required: true,
+            minLength: 4,
+            validate: (value) => value === password.current || 'The passwords do not match',
+          })}
         />
-        {errors.repeatPassword && <p className="error">{errors.repeatPassword}</p>}
+        {errors.repeatPassword && <p>{errors.repeatPassword.message}</p>}
       </div>
       <div>
         <input
           type="text"
           name="firstName"
           placeholder="first name"
-          value={values.firstName}
-          onChange={handleChange}
+          ref={register({
+            required: true,
+            minLength: 3,
+          })}
         />
-        {errors.firstName && <p className="error">{errors.firstName}</p>}
+        {errors.firstName && errors.firstName.type === 'required'
+        && <p>This is required</p>}
+        {errors.firstName && errors.firstName.type === 'minLength'
+        && <p>Minimal length is 3</p>}
       </div>
       <div>
         <input
           type="text"
           name="lastName"
           placeholder="lastname"
-          value={values.lastName}
-          onChange={handleChange}
+          ref={register({
+            required: true,
+            minLength: 3,
+          })}
         />
-        {errors.lastName && <p className="error">{errors.lastName}</p>}
+        {errors.lastName && errors.lastName.type === 'required'
+        && <p>This is required</p>}
+        {errors.lastName && errors.lastName.type === 'minLength'
+        && <p>Minimal length is 3</p>}
       </div>
       <div>
         <input
           type="number"
           name="age"
           placeholder="age"
-          value={values.age}
-          onChange={handleChange}
+          ref={register({ required: true })}
         />
-        {errors.age && <p className="error">{errors.age}</p>}
+        {errors.age && errors.age.type === 'required'
+        && <p>This is required</p>}
       </div>
-      <button type="submit" onClick={fetchLogin}>Send</button>
+      <button type="submit">Send</button>
     </form>
   );
 }

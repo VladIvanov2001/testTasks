@@ -1,16 +1,16 @@
 // eslint-disable-next-line import/named
-import { SET_SEARCH_ELEMENTS } from '../actions/action';
+import { SET_IS_LOGIN } from '../actions/action';
 
-export const initialState = {
-  arr: [],
+export const initialLoginState = {
+  isLogin: false,
 };
 
-export const searchTags = (state = initialState, action) => {
+export const isLogin = (state = initialLoginState, action) => {
   switch (action.type) {
-    case SET_SEARCH_ELEMENTS: {
+    case SET_IS_LOGIN: {
       return {
         ...state,
-        arr: action.payload,
+        isLogin: true,
       };
     }
     default:

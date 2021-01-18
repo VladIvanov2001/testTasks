@@ -1,9 +1,9 @@
 import { combineReducers, createStore } from 'redux';
-import { searchTags } from './reducers/reduce';
+import { isLogin } from './reducers/reduce';
 
 export function rootReducer() {
   return combineReducers({
-    searchTags,
+    isLogin,
   });
 }
 

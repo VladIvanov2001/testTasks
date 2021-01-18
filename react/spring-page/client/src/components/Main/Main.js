@@ -2,14 +2,19 @@ import React, { useState, useEffect } from 'react';
 import './Main.css';
 import { Description } from '../Description/Description';
 import API from '../../utils/API';
+import { store } from '../../redux/store';
 
 export function Main() {
   const [name, setName] = useState('');
   const [data, setData] = useState([]);
+  const isLog = store.getState().isLogin;
+
+  useEffect(() => {
+    console.log(isLog);
+  });
 
   useEffect(() => {
     const fetchSearch = async () => {
-      console.log(name);
       const result = await API.get(`/info/spring?filter=${name}`);
       setData(result.data);
     };

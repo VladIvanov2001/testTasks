@@ -1,6 +1,6 @@
-export const SET_SEARCH_ELEMENTS = 'SET_SEARCH_ELEMENTS';
+export const SET_IS_LOGIN = 'SET_IS_LOGIN';
 
-export const setNecessaryElements = (newArr) => ({
-  type: SET_SEARCH_ELEMENTS,
-  payload: newArr,
+export const setLoginIsTrue = (isLogin) => ({
+  type: SET_IS_LOGIN,
+  payload: isLogin,
 });

@@ -16,7 +16,7 @@ router.post('/registration', async function (request, response, next) {
             lastName: user.lastName,
             age: user.age,
         });
-        return response.send(200);
+        return response.send(200).json();
     } catch (e) {
         response.status(400).json({
             message: 'There is no all data'

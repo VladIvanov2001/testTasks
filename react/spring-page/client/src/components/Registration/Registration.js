@@ -1,12 +1,15 @@
 import './Registration.css';
 import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import API from '../../utils/API';
+import { setLoginIsTrue } from '../../redux/actions/action';
 
-export function Registration({ isLogin }) {
+export function Registration() {
   const history = useHistory();
   const password = useRef({});
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -27,8 +30,8 @@ export function Registration({ isLogin }) {
     })
       .then(() => {
         if (Object.keys(errors).length === 0) {
+          dispatch(setLoginIsTrue(true));
           history.push('/main');
-          isLogin(true);
         }
       });
   };

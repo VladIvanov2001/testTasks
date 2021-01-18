@@ -10,7 +10,7 @@ export const isLogin = (state = initialLoginState, action) => {
     case SET_IS_LOGIN: {
       return {
         ...state,
-        isLogin: true,
+        isLogin: action.payload,
       };
     }
     default:

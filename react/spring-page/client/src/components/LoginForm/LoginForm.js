@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import API from '../../utils/API';
 import { setLoginIsTrue } from '../../redux/actions/action';
+import { store } from '../../redux/store';
 
 export function LoginForm() {
   const [login, setLogin] = useState('');

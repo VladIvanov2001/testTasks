@@ -6,11 +6,8 @@ import { Header } from './components/Header/Header';
 import { Main } from './components/Main/Main';
 import { LoginForm } from './components/LoginForm/LoginForm';
 import { Registration } from './components/Registration/Registration';
-import { store } from './redux/store';
 
 function App() {
-  const isLog = store.getState().isLogin;
-  console.log(isLog);
   return (
     <BrowserRouter>
       <Route
@@ -19,15 +16,12 @@ function App() {
           <LoginForm />
         )}
       />
-      {isLog
-      && (
-        <Route path="/main">
-          <>
-            <Header />
-            <Main />
-          </>
-        </Route>
-      )}
+      <Route path="/main">
+        <>
+          <Header />
+          <Main />
+        </>
+      </Route>
       <Route
         path="/registration"
         render={() => (

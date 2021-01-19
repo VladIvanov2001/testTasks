@@ -11,7 +11,7 @@ export function LoginForm() {
 
   const [password, setPassword] = useState('');
   const history = useHistory();
-  const fetchLogin = async (event) => {
+  const onSubmit = async (event) => {
     try {
       event.preventDefault();
       const response = await API.post('auth/signup', {
@@ -27,7 +27,7 @@ export function LoginForm() {
   };
 
   return (
-    <form onSubmit={fetchLogin}>
+    <form onSubmit={onSubmit}>
       <input
         type="text"
         placeholder="login"

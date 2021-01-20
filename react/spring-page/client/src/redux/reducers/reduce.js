@@ -11,8 +11,7 @@ export const isLogin = (state = initialLoginState, action) => {
     case SET_IS_LOGIN: {
       return {
         ...state,
-        isLogin: true,
-        user: { ...action.payload },
+        isLogin: action.payload,
       };
     }
     default:

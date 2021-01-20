@@ -18,7 +18,7 @@ export function Registration() {
   } = useForm();
   password.current = watch('password', '');
   const onSubmit = async (data) => {
-    const result = await API.post('auth/registration', {
+    await API.post('auth/registration', {
       username: data.username,
       password: data.password,
       email: data.email,
@@ -26,7 +26,7 @@ export function Registration() {
       lastName: data.lastName,
       age: data.age,
     });
-    dispatch(setLoginIsTrue(result.data.token));
+    dispatch(setLoginIsTrue(true));
     history.push('/main');
   };
 

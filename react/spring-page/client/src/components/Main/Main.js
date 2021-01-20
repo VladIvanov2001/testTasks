@@ -11,13 +11,13 @@ export function Main() {
   const isLoggedIn = useSelector((state) => state.isLogin);
   useEffect(() => {
     const fetchSearch = async () => {
-      const result = await API.get(`/info/spring?filter=${name}`);
+      const result = await API.get(`/info/spring?filter=${name}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
       setData(result.data);
     };
     fetchSearch();
   }, [name]);
 
-  if (!isLoggedIn.isLogin) {
+  if (!isLoggedIn.isLogin && !localStorage.getItem('token')) {
     return <Redirect to="/login" />;
   }
   return (

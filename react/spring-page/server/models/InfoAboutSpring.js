@@ -1,23 +1,22 @@
-const Sequelize = require('sequelize');
 const sequelize = require('../sequelize');
 
 module.exports = sequelize.define('infoSpring', {
   id: {
-    type: Sequelize.INTEGER,
+    type: sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true,
     allowNull: false,
   },
   name: {
-    type: Sequelize.STRING,
+    type: sequelize.STRING,
     allowNull: false,
   },
   description: {
-    type: Sequelize.INTEGER,
+    type: sequelize.INTEGER,
     allowNull: false,
   },
   image: {
-    type: Sequelize.INTEGER,
+    type: sequelize.INTEGER,
     allowNull: false,
   },
 }, {

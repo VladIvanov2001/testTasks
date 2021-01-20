@@ -19,7 +19,7 @@ export function LoginForm() {
         password,
       });
       localStorage.setItem('token', response.data.token);
-      dispatch(setLoginIsTrue(response.data.token));
+      dispatch(setLoginIsTrue(true));
       history.push('/main');
     } catch (e) {
       console.log(`Axios request failed: ${e}`);

@@ -17,7 +17,7 @@ router.post('/signup', async (request, response, next) => {
       attributes: ['name', 'password', 'id'],
     });
     if (!necessaryUser) {
-      new Error('There is no necessary user');
+      throw new Error('There is no necessary user');
     }
     if (necessaryUser.name && await bcrypt.compare(password, necessaryUser.password)) {
       const token = jwt.sign({

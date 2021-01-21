@@ -1,15 +1,12 @@
 import './Registration.css';
 import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import API from '../../utils/API';
-import { setLoginIsTrue } from '../../redux/actions/action';
 
 export function Registration() {
   const history = useHistory();
   const password = useRef({});
-  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -18,7 +15,7 @@ export function Registration() {
   } = useForm();
   password.current = watch('password', '');
   const onSubmit = async (data) => {
-    await API.post('auth/registration', {
+    const response = await API.post('auth/registration', {
       username: data.username,
       password: data.password,
       email: data.email,
@@ -26,7 +23,7 @@ export function Registration() {
       lastName: data.lastName,
       age: data.age,
     });
-    dispatch(setLoginIsTrue(true));
+    localStorage.setItem('token', response.data.token);
     history.push('/main');
   };
 

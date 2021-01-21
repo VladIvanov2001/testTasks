@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import './Main.css';
+import axios from 'axios';
+import { useHistory } from 'react-router';
 import { Description } from '../Description/Description';
 import API from '../../utils/API';
 
 export function Main() {
+  const history = useHistory();
   const [name, setName] = useState('');
   const [data, setData] = useState([]);
-  const isLoggedIn = useSelector((state) => state.isLogin);
   useEffect(() => {
     const fetchSearch = async () => {
       const result = await API.get(`/info/spring?filter=${name}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
@@ -17,9 +17,13 @@ export function Main() {
     fetchSearch();
   }, [name]);
 
-  if (!isLoggedIn.isLogin && !localStorage.getItem('token')) {
-    return <Redirect to="/login" />;
-  }
+  axios.interceptors.response.use(undefined, (error) => {
+    if (error.status === 401) {
+      localStorage.removeItem('token');
+      history.push('/login');
+    }
+  });
+
   return (
     <main className="main">
       <Description />

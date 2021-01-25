@@ -1,0 +1,3 @@
+interface IMultipleHealer{
+    addHealthForAllUnits():any,
+}

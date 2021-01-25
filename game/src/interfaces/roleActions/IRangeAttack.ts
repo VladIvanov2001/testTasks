@@ -1,0 +1,3 @@
+interface IRangeAttack{
+    makeRangeAttack():any,
+}

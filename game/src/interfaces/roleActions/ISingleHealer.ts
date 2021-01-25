@@ -1,0 +1,3 @@
+interface ISingleHealer{
+    addHealthSingleTarget(): any,
+}

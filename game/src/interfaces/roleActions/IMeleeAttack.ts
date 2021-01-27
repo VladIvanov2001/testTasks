@@ -1,3 +1,0 @@
-interface IMeleeAttack {
-    makeMeleeDamage():any,
-}

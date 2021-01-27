@@ -1,3 +1,0 @@
-interface IMageAttack{
-    makeMagicAttack():any,
-}

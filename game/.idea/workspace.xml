@@ -2,36 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72256685-61f2-4d03-884e-218335512447" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/classes/Unit.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/models/Archimage.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/models/Bandit.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/models/Bishop.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/models/Centaur.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/models/ElfArcher.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/models/Monk.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/models/Sirena.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/models/Skeleton.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/models/SkeletonMage.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/roleActions/Attack/MageAttack.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/roleActions/Attack/MeleeAttack.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/roleActions/Attack/RangeAttack.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/roleActions/Health/MultipleHeal.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/roleActions/Health/SIngleTargetHeal.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/roleActions/IRoleAction.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/roleActions/Paralyze/PerformParalyze.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/classes/actions/defence/DefencePerformance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IDefence.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Skeleton.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/Unit.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/roleActions/IMageAttack.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/roleActions/IMeleeAttack.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/roleActions/IMultipleHealer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/roleActions/IParalyzeAttack.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/roleActions/IRangeAttack.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/roleActions/ISingleHealer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reportWebVitals.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/Unit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Unit.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/models/Archimage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/models/Archimage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/models/Bandit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/models/Bandit.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/models/Bishop.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/models/Bishop.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/models/Centaur.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/models/Centaur.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/models/ElfArcher.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/models/ElfArcher.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,8 +52,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\GH\testTasks\game\src\classes\models" />
+      <recent name="C:\GH\testTasks\game\src\classes\actions" />
+      <recent name="C:\GH\testTasks\game\src\interfaces" />
       <recent name="C:\GH\testTasks\game\src\classes" />
+      <recent name="C:\GH\testTasks\game\src\classes\models" />
       <recent name="C:\GH\testTasks\game\src\interfaces\roleActions\Attack" />
     </key>
   </component>
@@ -84,7 +67,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611647342909</updated>
-      <workItem from="1611647347387" duration="16896000" />
+      <workItem from="1611647347387" duration="19621000" />
     </task>
     <servers />
   </component>

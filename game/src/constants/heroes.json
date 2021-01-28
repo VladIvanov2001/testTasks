@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "name": "skeleton",
+    "type": "melee",
+    "hp": 100,
+    "damage": 25,
+    "initiative": 50,
+    "img": "assets/heroImages/skeleton.png"
+  },
+  {
+    "id": 2,
+    "name": "centaur",
+    "type": "melee",
+    "hp": 150,
+    "damage": 50,
+    "initiative": 50,
+    "img": "assets/heroImages/centaur.png"
+  },
+  {
+    "id": 3,
+    "name": "bandit",
+    "type": "range",
+    "hp": 75,
+    "damage": 30,
+    "initiative": 60,
+    "img": "assets/heroImages/bandit.png"
+  },
+  {
+    "id": 4,
+    "name": "Elf Archer",
+    "type": "range",
+    "hp": 90,
+    "damage": 45,
+    "initiative": 60,
+    "img": "assets/heroImages/elfArcher.png"
+  },
+  {
+    "id": 5,
+    "name": "Skeleton Mage",
+    "type": "mage",
+    "hp": 50,
+    "damage": 20,
+    "initiative": 40,
+    "img": "assets/heroImages/skeletonMage.png"
+  },
+  {
+    "id": 6,
+    "name": "archimage",
+    "type": "mage",
+    "hp": 90,
+    "damage": 30,
+    "initiative": 40,
+    "img": "assets/heroImages/archimage.png"
+  },
+  {
+    "id": 7,
+    "name": "monk",
+    "type": "singleHealer",
+    "hp": 90,
+    "heal": 40,
+    "initiative": 20,
+    "img": "assets/heroImages/monk.png"
+  },
+  {
+    "id": 8,
+    "name": "bishop",
+    "type": "massHealer",
+    "hp": 130,
+    "damage": 25,
+    "initiative": 20,
+    "img": "assets/heroImages/bishop.png"
+  },
+  {
+    "id": 9,
+    "name": "sirena",
+    "type": "paralyzer",
+    "hp": 80,
+    "damage": 0,
+    "initiative": 20,
+    "img": "assets/heroImages/sirena.png"
+  }
+]

@@ -1,10 +1,11 @@
 import { Unit } from "../Unit";
-import {RangeAttack} from "../actions/attack/RangeAttack";
-import {IDefence} from "../../interfaces/IDefence";
-import {DefencePerformance} from "../actions/defence/DefencePerformance";
+import { RangeAttack } from "../actions/attack/RangeAttack";
+import { DefencePerformance } from "../actions/defence/DefencePerformance";
+import { SingleTarget } from "../targets/SingleTarget";
+import { RangeType } from "../range/RangeType";
 
 export class Bandit extends Unit{
-    constructor(type: string, hp: number, damage: number, initiative: number) {
-        super(type, hp, damage, initiative, new RangeAttack(), new DefencePerformance());
+    constructor() {
+        super('Bandit',75, 30,0, 60, new RangeAttack(), new DefencePerformance(), new RangeType(),new SingleTarget());
     }
 }

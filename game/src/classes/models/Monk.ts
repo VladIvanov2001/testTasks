@@ -1,9 +1,11 @@
 import { Unit } from "../Unit";
-import {SingleTargetHeal} from "../actions/health/SIngleTargetHeal";
-import {DefencePerformance} from "../actions/defence/DefencePerformance";
+import { Heal } from "../actions/health/Heal";
+import { DefencePerformance } from "../actions/defence/DefencePerformance";
+import { RangeType } from "../range/RangeType";
+import { SingleTarget } from "../targets/SingleTarget";
 
 export class Monk extends Unit{
-    constructor(type: string, hp: number, damage: number, initiative: number) {
-        super(type, hp, damage, initiative, new SingleTargetHeal(), new DefencePerformance());
+    constructor() {
+        super('Monk', 90, 0,40, 20, new Heal(), new DefencePerformance(), new RangeType(), new SingleTarget());
     }
 }

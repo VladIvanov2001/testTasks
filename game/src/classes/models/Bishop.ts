@@ -1,10 +1,11 @@
 import { Unit } from "../Unit";
-import { MultipleHeal } from "../actions/health/MultipleHeal";
-import {IDefence} from "../../interfaces/IDefence";
-import {DefencePerformance} from "../actions/defence/DefencePerformance";
+import { Heal } from "../actions/health/Heal";
+import { DefencePerformance } from "../actions/defence/DefencePerformance";
+import { RangeType } from "../range/RangeType";
+import { MultiTarget } from "../targets/MultiTarget";
 
 export class Bishop extends Unit{
-    constructor(type: string, hp: number, damage: number, initiative: number) {
-       super(type, hp, damage, initiative, new MultipleHeal(), new DefencePerformance());
+    constructor() {
+       super('Bishop', 130, 0, 25,20, new Heal(), new DefencePerformance(), new RangeType(), new MultiTarget());
     }
 }

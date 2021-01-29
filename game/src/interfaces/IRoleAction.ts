@@ -1,3 +1,3 @@
 export interface IRoleAction{
-    action():any;
+    action(possibleTargets: BoardLocation[], targetLocation:BoardLocation | undefined):BoardLocation[];
 }

@@ -12,9 +12,9 @@ export class Unit {
     roleAction: IRoleAction;
     rangeType: IAttackRange;
     defence: IDefence;
-    targetType: ICountTarget;
+    targetActionType: ICountTarget;
 
-    constructor(name:string,hp: number, damage: number, heal: number, initiative: number, roleAction: IRoleAction, defence: IDefence, rangeType: IAttackRange, targetType: ICountTarget) {
+    constructor(name:string,hp: number, damage: number, heal: number, initiative: number, roleAction: IRoleAction, defence: IDefence, rangeType: IAttackRange, targetActionType: ICountTarget) {
         this.name = name;
         this.hp = hp;
         this.damage = damage;
@@ -23,6 +23,6 @@ export class Unit {
         this.roleAction = roleAction;
         this.rangeType = rangeType;
         this.defence = defence;
-        this.targetType = targetType;
+        this.targetActionType = targetActionType;
     }
 }

@@ -5,7 +5,11 @@ import { SingleTarget } from "../targets/SingleTarget";
 import { RangeType } from "../range/RangeType";
 
 export class Bandit extends Unit{
-    constructor() {
-        super('Bandit',75, 30,0, 60, new RangeAttack(), new DefencePerformance(), new RangeType(),new SingleTarget());
+    constructor(hp = 75, damage = 30, heal = 0, initiative = 60) {
+        super('Bandit',hp, damage,heal, initiative, new RangeAttack(), new DefencePerformance(), new RangeType(),new SingleTarget());
+        this.hp = hp;
+        this.damage = damage;
+        this.heal = heal;
+        this.initiative = initiative;
     }
 }

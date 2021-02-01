@@ -6,11 +6,7 @@ import {RangeType} from "../range/RangeType";
 
 export class Sirena extends Unit {
 
-    constructor(hp = 80, damage = 0, heal = 0, initiative = 20) {
-        super('Sirena', hp, damage, heal, initiative, new PerformParalyze(), new DefencePerformance(), new RangeType(), new SingleTarget());
-        this.hp = hp;
-        this.damage = damage;
-        this.heal = heal;
-        this.initiative = initiative;
+    constructor(name: string | 'Sirena', hp: number | 80, damage: number | 0, heal: number | 0, initiative: number | 20) {
+        super(name, hp, damage, heal, initiative, new PerformParalyze(), new DefencePerformance(), new RangeType(), new SingleTarget());
     }
 }

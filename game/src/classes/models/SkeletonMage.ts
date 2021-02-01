@@ -5,11 +5,7 @@ import { RangeType } from "../range/RangeType";
 import { MultiTarget } from "../targets/MultiTarget";
 
 export class SkeletonMage extends Unit{
-    constructor(hp = 50, damage = 20, heal = 0, initiative = 40) {
-        super('Skeleton Mage',50, 20,0, 40, new MageAttack(), new DefencePerformance(), new RangeType(), new MultiTarget());
-        this.hp = hp;
-        this.damage = damage;
-        this.heal = heal;
-        this.initiative = initiative;
+    constructor(name: string | 'Skeleton Mage', hp: number | 50, damage: number | 20, heal: number | 0, initiative: number | 40) {
+        super('Skeleton Mage',hp, damage,heal, initiative, new MageAttack(), new DefencePerformance(), new RangeType(), new MultiTarget());
     }
 }

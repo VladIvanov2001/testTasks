@@ -5,11 +5,7 @@ import {RangeType} from "../range/RangeType";
 import {MultiTarget} from "../targets/MultiTarget";
 
 export class Bishop extends Unit {
-    constructor(hp = 130, damage = 0, heal = 25, initiative = 20) {
-        super('Bishop', hp, damage, heal, initiative, new Heal(), new DefencePerformance(), new RangeType(), new MultiTarget());
-        this.hp = hp;
-        this.damage = damage;
-        this.heal = heal;
-        this.initiative = initiative;
+    constructor(name: string | 'Bishop', hp: number | 130, damage: number | 0, heal: number | 25, initiative: number | 20) {
+        super(name, hp, damage, heal, initiative, new Heal(), new DefencePerformance(), new RangeType(), new MultiTarget());
     }
 }

@@ -1,7 +1,8 @@
 import {ICountTarget} from "../../interfaces/ICountTarget";
+import {boardLocation} from "../../types/types";
 
 export class MultiTarget implements ICountTarget{
-    attackTargets(): any {
-        console.log('attack on multi target');
+    attackTargets(possibleTargets: boardLocation[]): boardLocation[] {
+        return possibleTargets;
     }
 }

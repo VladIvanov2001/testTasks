@@ -1,5 +1,5 @@
-import { Unit } from "../classes/Unit";
+import { boardLocation } from "../types/types";
 
 export interface ICountTarget {
-    attackTargets(unit:Unit):any
+    attackTargets(possibleTargets: boardLocation[], targetLocation: boardLocation):boardLocation[]
 }

@@ -1,5 +1,6 @@
 import { boardLocation } from "../types/types";
+import {ActionWithBoard} from "../classes/board/ActionWithBoard";
 
 export interface IAttackRange {
-    rangeAttack(unitLocation: boardLocation[], targetLocation: boardLocation): boardLocation[];
+    rangeAttack(unitBoardLocation: boardLocation, actionWithBoard: ActionWithBoard): boardLocation[];
 }

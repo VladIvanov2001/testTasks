@@ -1,5 +1,8 @@
-import {GameBoard} from "../classes/board/GameBoard";
+import { GameBoard } from "../classes/board/GameBoard";
+import { Unit } from "../classes/Unit";
+import { boardLocation } from "../types/types";
+import { ActionWithBoard } from "../classes/board/ActionWithBoard";
 
 export interface IRoleAction {
-    action(possibleTargets: GameBoard[], targetLocation: GameBoard | undefined): GameBoard[];
+    action(unit: Unit, unitsBoardLocations: boardLocation[], actionWithBoard: ActionWithBoard): Unit[];
 }

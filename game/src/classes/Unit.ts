@@ -4,6 +4,8 @@ import {ICountTarget} from "../interfaces/ICountTarget";
 import {MeleeType} from "./range/MeleeType";
 import {SingleTarget} from "./targets/SingleTarget";
 import {Attack} from "./actions/attack/Attack";
+import {boardLocation} from "../types/types";
+import {ActionWithBoard} from "./board/ActionWithBoard";
 
 export class Unit {
     name: string;
@@ -18,7 +20,7 @@ export class Unit {
     defence: boolean;
     originInitiative: number;
 
-    constructor(name?:string,hp?: number, damage?: number, heal?: number, initiative?: number, roleAction?: IRoleAction, rangeType?: IAttackRange, targetBehavior?: ICountTarget) {
+    constructor(name?: string, hp?: number, damage?: number, heal?: number, initiative?: number, roleAction?: IRoleAction, rangeType?: IAttackRange, targetBehavior?: ICountTarget) {
         this.name = name || '';
         this.hp = hp || 0;
         this.maxHP = hp || 0;
@@ -31,4 +33,18 @@ export class Unit {
         this.targetBehavior = targetBehavior || new SingleTarget();
         this.originInitiative = initiative || 0;
     }
+
+    getPossibleTargets(boardLocation: boardLocation, actionWithBoard: ActionWithBoard) {
+        return this.rangeType.rangeAttack(boardLocation, actionWithBoard);
+    }
+
+    getTargets(boardLocation: boardLocation, actionWithBoard: ActionWithBoard,
+               enemyBoardLocation: boardLocation | null,): boardLocation[] {
+        return this.targetBehavior.attackTargets(this.getPossibleTargets(boardLocation, actionWithBoard), enemyBoardLocation);
+    }
+
+    action(boardLocation: boardLocation, actionWithBoard: ActionWithBoard, enemyBoardLocation: boardLocation | null = null) {
+        return this.roleAction.action(this, this.getTargets(boardLocation, actionWithBoard, enemyBoardLocation), actionWithBoard);
+    }
+
 }

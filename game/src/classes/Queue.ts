@@ -5,10 +5,10 @@ import {InitBoard} from "./InitBoard";
 export class Queue {
     queueList: Unit[];
     currentUnit: Unit;
-    switch: Generator<Unit>;
+    switchQueue: Generator<Unit>;
 
     constructor(units: unit[][], initBoard: InitBoard) {
-        this.switch = this.queueGenerator();
+        this.switchQueue = this.queueGenerator();
         this.queueList = this.randomUnitWithEqualInitiative(
             units.filter((aliveUnit) => aliveUnit) as Unit[][],
         ).reduce((accumulator, currentArray) => [...accumulator, ...initBoard.mixUnitOrder(currentArray)]);
@@ -58,13 +58,13 @@ export class Queue {
     }
 
     next(): Unit {
-        this.currentUnit = this.switch.next().value;
+        this.currentUnit = this.switchQueue.next().value;
         while(this.currentUnit?.initiative === 0){
             this.deleteParalyzation();
-            this.currentUnit = this.switch.next().value;
+            this.currentUnit = this.switchQueue.next().value;
         }
         while(this.skipUnit()){
-            this.currentUnit = this.switch.next().value;
+            this.currentUnit = this.switchQueue.next().value;
         }
 
         if(this.currentUnit === this.queueList.filter(this.isUnitCanAct)[0]){

@@ -11,3 +11,8 @@ export enum Team {
     orangeTeam = 'ORANGE_TEAM',
     redTeam = 'RED_TEAM',
 }
+
+export enum TypeOfAction {
+    action = 'ACTION',
+    defence = 'DEFENCE'
+}

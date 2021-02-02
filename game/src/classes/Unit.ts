@@ -16,6 +16,7 @@ export class Unit {
     rangeType: IAttackRange;
     targetBehavior: ICountTarget;
     defence: boolean;
+    originInitiative: number;
 
     constructor(name?:string,hp?: number, damage?: number, heal?: number, initiative?: number, roleAction?: IRoleAction, rangeType?: IAttackRange, targetBehavior?: ICountTarget) {
         this.name = name || '';
@@ -28,5 +29,6 @@ export class Unit {
         this.rangeType = rangeType || new MeleeType();
         this.defence = false;
         this.targetBehavior = targetBehavior || new SingleTarget();
+        this.originInitiative = initiative || 0;
     }
 }

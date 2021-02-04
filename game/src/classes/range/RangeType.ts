@@ -1,19 +1,19 @@
 import { IAttackRange } from "../../interfaces/IAttackRange";
 import { boardLocation } from "../../types/types";
-import { ActionWithBoard } from "../board/ActionWithBoard";
+import { GameBoardAction } from "../board/GameBoardAction";
 import { Heal } from "../actions/health/Heal";
 
 export class RangeType implements IAttackRange {
   rangeAttack(
     unitBoardLocation: boardLocation,
-    actionWithBoard: ActionWithBoard
+    gameBoardAction: GameBoardAction
   ): boardLocation[] {
-    const unit = actionWithBoard.getUnitByLocation(unitBoardLocation);
+    const unit = gameBoardAction.getUnitByLocation(unitBoardLocation);
 
     if (unit?.roleAction instanceof Heal) {
-      return actionWithBoard.getAllAlliesLocation(unitBoardLocation);
+      return gameBoardAction.getAllAlliesLocation(unitBoardLocation);
     } else {
-      return actionWithBoard.getAllEnemiesLocation(unitBoardLocation);
+      return gameBoardAction.getAllEnemiesLocation(unitBoardLocation);
     }
   }
 }

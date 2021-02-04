@@ -1,7 +1,7 @@
 import { IRoleAction } from "../../../interfaces/IRoleAction";
 import { Unit } from "../../Unit";
 import { boardLocation } from "../../../types/types";
-import { ActionWithBoard } from "../../board/ActionWithBoard";
+import { GameBoardAction } from "../../board/GameBoardAction";
 import { unit } from "../../../types/types";
 
 export class Heal implements IRoleAction {
@@ -9,7 +9,7 @@ export class Heal implements IRoleAction {
   action(
     unit: Unit,
     unitsBoardLocations: boardLocation[],
-    actionWithBoard: ActionWithBoard
+    actionWithBoard: GameBoardAction
   ): Unit[] {
     const unitsForHeal: Unit[] = [];
     unitsBoardLocations.forEach((boardLocation) => {

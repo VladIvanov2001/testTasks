@@ -5,11 +5,11 @@ import { MultiTarget } from "../targets/MultiTarget";
 
 export class Bishop extends Unit {
   constructor(
-    name: string | "Bishop",
-    hp: number | 130,
-    damage: number | 0,
-    heal: number | 25,
-    initiative: number | 20
+    name= "Bishop",
+    hp = 130,
+    damage = 0,
+    heal = 25,
+    initiative = 20
   ) {
     super(
       name,

@@ -1,14 +1,14 @@
 import { Unit } from "./Unit";
 import { unit } from "../types/types";
-import { InitBoard } from "./InitBoard";
+import { Randomizer } from "./Randomizer";
 
 export class Queue {
   queueList: Unit[];
   currentUnit: Unit;
-  switchQueue: Generator<Unit>;
+  queueSwitcher: Generator<Unit>;
 
-  constructor(units: unit[][], initBoard: InitBoard) {
-    this.switchQueue = this.queueGenerator();
+  constructor(units: unit[][], initBoard: Randomizer) {
+    this.queueSwitcher = this.queueGenerator();
     this.queueList = this.randomUnitWithEqualInitiative(
       units.filter((aliveUnit) => aliveUnit) as Unit[][]
     ).reduce((accumulator, currentArray) => [
@@ -64,13 +64,13 @@ export class Queue {
   }
 
   next(): Unit {
-    this.currentUnit = this.switchQueue.next().value;
+    this.currentUnit = this.queueSwitcher.next().value;
     while (this.currentUnit?.initiative === 0) {
       this.deleteParalyzation();
-      this.currentUnit = this.switchQueue.next().value;
+      this.currentUnit = this.queueSwitcher.next().value;
     }
     while (this.skipUnit()) {
-      this.currentUnit = this.switchQueue.next().value;
+      this.currentUnit = this.queueSwitcher.next().value;
     }
 
     if (this.currentUnit === this.queueList.filter(this.isUnitCanAct)[0]) {

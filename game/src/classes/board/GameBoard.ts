@@ -1,22 +1,25 @@
-import { unit, boardLocation } from "../../types/types";
+import { unit, boardLocation, unitMatrix } from "../../types/types";
 
 export class GameBoard {
-  board: Array<Array<unit>>;
+  private boardMatrix: unitMatrix;
 
   constructor(rowsNumber: number, columnsNumber: number) {
     const columns = Array<unit>(columnsNumber).fill(null);
-    this.board = Array<Array<unit>>(rowsNumber).fill(columns);
+    this.boardMatrix = Array<Array<unit>>(rowsNumber).fill(columns);
   }
 
-  getBoard(): unit[][] {
-    return this.board;
+  getBoardMatrix(): unit[][] {
+    //return board with units and their coords
+    return this.boardMatrix;
   }
 
   putAllUnitsOnBoard(units: unit[][]): void {
-    this.board = [...units];
+    this.boardMatrix = [...units];
   }
 
   putUnitOnBoard(unit: unit, boardLocation: boardLocation): void {
-    this.board[boardLocation.columnNumber][boardLocation.rowNumber] = unit;
+    this.boardMatrix[boardLocation.columnNumber][
+      boardLocation.rowNumber
+    ] = unit;
   }
 }

@@ -5,11 +5,11 @@ import { Attack } from "../actions/attack/Attack";
 
 export class ElfArcher extends Unit {
   constructor(
-    name: string | "Elf Archer",
-    hp: number | 90,
-    damage: number | 45,
-    heal: number | 0,
-    initiative: number | 60
+    name = "Elf Archer",
+    hp = 90,
+    damage = 45,
+    heal = 0,
+    initiative = 60
   ) {
     super(
       name,

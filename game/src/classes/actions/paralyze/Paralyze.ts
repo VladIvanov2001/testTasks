@@ -1,7 +1,7 @@
 import { IRoleAction } from "../../../interfaces/IRoleAction";
 import { Unit } from "../../Unit";
 import { boardLocation } from "../../../types/types";
-import { ActionWithBoard } from "../../board/ActionWithBoard";
+import { GameBoardAction } from "../../board/GameBoardAction";
 import { unit } from "../../../types/types";
 
 export class Paralyze implements IRoleAction {
@@ -9,7 +9,7 @@ export class Paralyze implements IRoleAction {
   action(
     unit: Unit,
     enemiesBoardLocations: boardLocation[],
-    actionWithBoard: ActionWithBoard
+    actionWithBoard: GameBoardAction
   ): Unit[] {
     const paralyzedUnits: Unit[] = [];
     enemiesBoardLocations.forEach((enemyBoardLocation) => {
@@ -17,7 +17,7 @@ export class Paralyze implements IRoleAction {
         enemyBoardLocation
       );
       if (enemyUnit) {
-        enemyUnit.initiative = 0;
+        enemyUnit.initiative = 0; //if initiative is equal to 0 - unit skips turn
         paralyzedUnits.push(enemyUnit);
       }
     });

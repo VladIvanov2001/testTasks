@@ -1,13 +1,13 @@
 import { IAttackRange } from "../../interfaces/IAttackRange";
 import { boardLocation, Team } from "../../types/types";
-import { ActionWithBoard } from "../board/ActionWithBoard";
+import { GameBoardAction } from "../board/GameBoardAction";
 
 export class MeleeType implements IAttackRange {
   rangeAttack(
     unitBoardLocation: boardLocation,
-    actionWithBoard: ActionWithBoard
+    gameBoardAction: GameBoardAction
   ): boardLocation[] {
-    const neighborEnemiesLocation = actionWithBoard.getEnemyNeighborLocation(
+    const neighborEnemiesLocation = gameBoardAction.getEnemyNeighborLocation(
       unitBoardLocation
     );
 
@@ -15,16 +15,16 @@ export class MeleeType implements IAttackRange {
       return neighborEnemiesLocation;
     }
 
-    const unitTeam: Team | null = actionWithBoard.getUnitTeam(
+    const unitTeam: Team | null = gameBoardAction.getUnitTeam(
       unitBoardLocation
     );
-    if (unitTeam === actionWithBoard.getNextLineTeam(unitBoardLocation)) {
+    if (unitTeam === gameBoardAction.getNextLineTeam(unitBoardLocation)) {
       return [];
     }
 
     const nearestEnemiesLocation:
       | boardLocation[]
-      | null = actionWithBoard.getNearestEnemyRow(unitBoardLocation);
+      | null = gameBoardAction.getNearestEnemyRow(unitBoardLocation);
     if (nearestEnemiesLocation) {
       return nearestEnemiesLocation;
     }

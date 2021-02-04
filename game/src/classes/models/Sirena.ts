@@ -5,11 +5,11 @@ import { RangeType } from "../range/RangeType";
 
 export class Sirena extends Unit {
   constructor(
-    name: string | "Sirena",
-    hp: number | 80,
-    damage: number | 0,
-    heal: number | 0,
-    initiative: number | 20
+    name = "Sirena",
+    hp = 80,
+    damage = 0,
+    heal = 0,
+    initiative = 20
   ) {
     super(
       name,

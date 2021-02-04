@@ -5,7 +5,7 @@ import { MeleeType } from "./range/MeleeType";
 import { SingleTarget } from "./targets/SingleTarget";
 import { Attack } from "./actions/attack/Attack";
 import { boardLocation } from "../types/types";
-import { ActionWithBoard } from "./board/ActionWithBoard";
+import { GameBoardAction } from "./board/GameBoardAction";
 
 export class Unit {
   name: string;
@@ -45,15 +45,15 @@ export class Unit {
 
   getPossibleTargets(
     boardLocation: boardLocation,
-    actionWithBoard: ActionWithBoard
+    actionWithBoard: GameBoardAction
   ) {
     return this.rangeType.rangeAttack(boardLocation, actionWithBoard);
   }
 
   getTargets(
     boardLocation: boardLocation,
-    actionWithBoard: ActionWithBoard,
-    enemyBoardLocation: boardLocation | null
+    actionWithBoard: GameBoardAction,
+    enemyBoardLocation: boardLocation
   ): boardLocation[] {
     return this.targetBehavior.attackTargets(
       this.getPossibleTargets(boardLocation, actionWithBoard),
@@ -63,8 +63,8 @@ export class Unit {
 
   action(
     boardLocation: boardLocation,
-    actionWithBoard: ActionWithBoard,
-    enemyBoardLocation: boardLocation | null = null
+    actionWithBoard: GameBoardAction,
+    enemyBoardLocation: boardLocation = null
   ) {
     return this.roleAction.action(
       this,

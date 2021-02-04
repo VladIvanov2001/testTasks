@@ -5,11 +5,11 @@ import { SingleTarget } from "../targets/SingleTarget";
 
 export class Monk extends Unit {
   constructor(
-    name: string | "Monk",
-    hp: number | 90,
-    damage: number | 0,
-    heal: number | 40,
-    initiative: number | 20
+    name = "Monk",
+    hp = 90,
+    damage =  0,
+    heal = 40,
+    initiative = 20
   ) {
     super(
       name,

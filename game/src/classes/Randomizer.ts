@@ -9,7 +9,7 @@ import { Sirena } from "./models/Sirena";
 import { Skeleton } from "./models/Skeleton";
 import { SkeletonMage } from "./models/SkeletonMage";
 
-export class InitBoard {
+export class Randomizer {
   unitList: typeof Unit[];
 
   constructor() {

@@ -7,6 +7,8 @@ export type boardLocation = {
 
 export type unit = Unit | null;
 
+export type unitMatrix = Array<Array<unit>>;
+
 export enum Team {
   orangeTeam = "ORANGE_TEAM",
   redTeam = "RED_TEAM",

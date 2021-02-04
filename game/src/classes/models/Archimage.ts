@@ -5,14 +5,14 @@ import { SingleTarget } from "../targets/SingleTarget";
 
 export class Archimage extends Unit {
   constructor(
-    name: string | "Archimage",
-    hp: number | 90,
-    damage: number | 30,
-    heal: number | 0,
-    initiative: number | 40
+    name = "Archimage",
+    hp = 90,
+    damage = 30,
+    heal = 0,
+    initiative = 40
   ) {
     super(
-      "Archimage",
+      name,
       hp,
       damage,
       heal,

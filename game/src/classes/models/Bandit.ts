@@ -5,11 +5,11 @@ import { Attack } from "../actions/attack/Attack";
 
 export class Bandit extends Unit {
   constructor(
-    name: string | "Bandit",
-    hp: number | 75,
-    damage: number | 30,
-    heal: number | 0,
-    initiative: number | 60
+    name = "Bandit",
+    hp = 75,
+    damage = 30,
+    heal = 0,
+    initiative = 60
   ) {
     super(
       name,

@@ -5,14 +5,14 @@ import { MultiTarget } from "../targets/MultiTarget";
 
 export class SkeletonMage extends Unit {
   constructor(
-    name: string | "Skeleton Mage",
-    hp: number | 50,
-    damage: number | 20,
-    heal: number | 0,
-    initiative: number | 40
+    name = "Skeleton Mage",
+    hp = 50,
+    damage = 20,
+    heal = 0,
+    initiative = 40
   ) {
     super(
-      "Skeleton Mage",
+      name,
       hp,
       damage,
       heal,

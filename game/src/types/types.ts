@@ -1,18 +1,18 @@
 import { Unit } from "../classes/Unit";
 
 export type boardLocation = {
-    columnNumber: number;
-    rowNumber: number;
-}
+  columnNumber: number;
+  rowNumber: number;
+};
 
 export type unit = Unit | null;
 
 export enum Team {
-    orangeTeam = 'ORANGE_TEAM',
-    redTeam = 'RED_TEAM',
+  orangeTeam = "ORANGE_TEAM",
+  redTeam = "RED_TEAM",
 }
 
 export enum TypeOfAction {
-    action = 'ACTION',
-    defence = 'DEFENCE'
+  action = "ACTION",
+  defence = "DEFENCE",
 }

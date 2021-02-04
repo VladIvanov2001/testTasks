@@ -2,24 +2,25 @@ import { IRoleAction } from "../../../interfaces/IRoleAction";
 import { Unit } from "../../Unit";
 import { boardLocation } from "../../../types/types";
 import { ActionWithBoard } from "../../board/ActionWithBoard";
+import { unit } from "../../../types/types";
 
-export class Attack implements IRoleAction {
-  // class for units who can attack
+export class Paralyze implements IRoleAction {
+  // class for unit who can paralyze
   action(
     unit: Unit,
     enemiesBoardLocations: boardLocation[],
     actionWithBoard: ActionWithBoard
   ): Unit[] {
-    const damagedUnits: Unit[] = [];
+    const paralyzedUnits: Unit[] = [];
     enemiesBoardLocations.forEach((enemyBoardLocation) => {
-      const enemyUnit = actionWithBoard.getUnitByLocation(enemyBoardLocation);
+      const enemyUnit: unit = actionWithBoard.getUnitByLocation(
+        enemyBoardLocation
+      );
       if (enemyUnit) {
-        enemyUnit.hp = enemyUnit.defence
-          ? enemyUnit.hp - 0.5 * unit.damage
-          : (enemyUnit.hp = enemyUnit.hp - unit.damage);
-        damagedUnits.push(enemyUnit);
+        enemyUnit.initiative = 0;
+        paralyzedUnits.push(enemyUnit);
       }
     });
-    return damagedUnits;
+    return paralyzedUnits;
   }
 }

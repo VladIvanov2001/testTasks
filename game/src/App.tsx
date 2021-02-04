@@ -1,11 +1,9 @@
-import React from 'react';
-import './App.css';
-import {GameField} from "./components/GameField/GameField";
+import React from "react";
+import "./App.css";
+import { GameField } from "./components/GameField/GameField";
 
 function App() {
-  return (
-    <GameField />
-  );
+  return <GameField />;
 }
 
 export default App;

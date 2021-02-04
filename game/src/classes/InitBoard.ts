@@ -1,47 +1,57 @@
-import {Unit} from "./Unit";
-import {Archimage} from "./models/Archimage";
-import {Bandit} from "./models/Bandit";
-import {Bishop} from "./models/Bishop";
-import {Centaur} from "./models/Centaur";
-import {ElfArcher} from "./models/ElfArcher";
-import {Monk} from "./models/Monk";
-import {Sirena} from "./models/Sirena";
-import {Skeleton} from "./models/Skeleton";
-import {SkeletonMage} from "./models/SkeletonMage";
+import { Unit } from "./Unit";
+import { Archimage } from "./models/Archimage";
+import { Bandit } from "./models/Bandit";
+import { Bishop } from "./models/Bishop";
+import { Centaur } from "./models/Centaur";
+import { ElfArcher } from "./models/ElfArcher";
+import { Monk } from "./models/Monk";
+import { Sirena } from "./models/Sirena";
+import { Skeleton } from "./models/Skeleton";
+import { SkeletonMage } from "./models/SkeletonMage";
 
 export class InitBoard {
-    unitList: typeof Unit[];
+  unitList: typeof Unit[];
 
-    constructor() {
-        this.unitList = [Skeleton, Centaur, Bandit, ElfArcher, SkeletonMage, Archimage, Monk, Bishop, Sirena];
-    }
+  constructor() {
+    this.unitList = [
+      Skeleton,
+      Centaur,
+      Bandit,
+      ElfArcher,
+      SkeletonMage,
+      Archimage,
+      Monk,
+      Bishop,
+      Sirena,
+    ];
+  }
 
-    mixUnitOrder(unitsList: Unit[]): Unit[] {
-        for (let i = unitsList.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [unitsList[i], unitsList[j]] = [unitsList[j], unitsList[i]];
-        }
-        return unitsList;
+  mixUnitOrder(unitsList: Unit[]): Unit[] {
+    for (let i = unitsList.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [unitsList[i], unitsList[j]] = [unitsList[j], unitsList[i]];
     }
+    return unitsList;
+  }
 
-    getIndexForMix(): number {
-        return Math.floor(Math.random() * this.mixUnitOrder.length);
-    }
+  getIndexForMix(): number {
+    return Math.floor(Math.random() * this.mixUnitOrder.length);
+  }
 
-    generateUnit(): Unit {
-        const unit = new this.unitList[this.getIndexForMix()]()
-        return unit;
-    }
+  generateUnit(): Unit {
+    const unit = new this.unitList[this.getIndexForMix()]();
+    return unit;
+  }
 
-    generateGameBoard(rows: number, columns: number): Unit[][] {
-        const gameBoard: Unit[][] = [];
-        for (let i = 0; i < rows; i++) {
-            const unitsOnRow: Unit[] = [];
-            for (let j = 0; j < columns; j++) {
-                unitsOnRow.push(this.generateUnit());
-            }
-            gameBoard.push(unitsOnRow);
-        }
-        return gameBoard;
+  generateGameBoard(rows: number, columns: number): Unit[][] {
+    const gameBoard: Unit[][] = [];
+    for (let i = 0; i < rows; i++) {
+      const unitsOnRow: Unit[] = [];
+      for (let j = 0; j < columns; j++) {
+        unitsOnRow.push(this.generateUnit());
+      }
+      gameBoard.push(unitsOnRow);
     }
+    return gameBoard;
+  }
 }

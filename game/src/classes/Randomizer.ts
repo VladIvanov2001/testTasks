@@ -9,6 +9,7 @@ import { Sirena } from "./models/Sirena";
 import { Skeleton } from "./models/Skeleton";
 import { SkeletonMage } from "./models/SkeletonMage";
 
+//this class is used for creating random units order
 export class Randomizer {
   unitList: typeof Unit[];
 
@@ -27,6 +28,7 @@ export class Randomizer {
   }
 
   mixUnitOrder(unitsList: Unit[]): Unit[] {
+    //Fisher–Yates shuffle
     for (let i = unitsList.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [unitsList[i], unitsList[j]] = [unitsList[j], unitsList[i]];
@@ -39,8 +41,7 @@ export class Randomizer {
   }
 
   generateUnit(): Unit {
-    const unit = new this.unitList[this.getIndexForMix()]();
-    return unit;
+    return new this.unitList[this.getIndexForMix()]();
   }
 
   generateGameBoard(rows: number, columns: number): Unit[][] {

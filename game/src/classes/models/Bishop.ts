@@ -5,7 +5,7 @@ import { MultiTarget } from "../targets/MultiTarget";
 
 export class Bishop extends Unit {
   constructor(
-    name= "Bishop",
+    name = "Bishop",
     hp = 130,
     damage = 0,
     heal = 25,

@@ -5,6 +5,8 @@ export type boardLocation = {
   rowNumber: number;
 };
 
+export type possibleBoardLocation = boardLocation | null;
+
 export type unit = Unit | null;
 
 export type unitMatrix = Array<Array<unit>>;

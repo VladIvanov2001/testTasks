@@ -4,7 +4,7 @@ import { ICountTarget } from "../interfaces/ICountTarget";
 import { MeleeType } from "./range/MeleeType";
 import { SingleTarget } from "./targets/SingleTarget";
 import { Attack } from "./actions/attack/Attack";
-import { boardLocation } from "../types/types";
+import { boardLocation, possibleBoardLocation } from "../types/types";
 import { GameBoardAction } from "./board/GameBoardAction";
 
 export class Unit {
@@ -53,7 +53,7 @@ export class Unit {
   getTargets(
     boardLocation: boardLocation,
     actionWithBoard: GameBoardAction,
-    enemyBoardLocation: boardLocation
+    enemyBoardLocation: possibleBoardLocation
   ): boardLocation[] {
     return this.targetBehavior.attackTargets(
       this.getPossibleTargets(boardLocation, actionWithBoard),
@@ -64,7 +64,7 @@ export class Unit {
   action(
     boardLocation: boardLocation,
     actionWithBoard: GameBoardAction,
-    enemyBoardLocation: boardLocation = null
+    enemyBoardLocation: possibleBoardLocation = null
   ) {
     return this.roleAction.action(
       this,

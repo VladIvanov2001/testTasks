@@ -8,11 +8,11 @@ export class Attack implements IRoleAction {
   action(
     unit: Unit,
     enemiesBoardLocations: boardLocation[],
-    actionWithBoard: GameBoardAction
+    gameBoardAction: GameBoardAction
   ): Unit[] {
     const damagedUnits: Unit[] = [];
     enemiesBoardLocations.forEach((enemyBoardLocation) => {
-      const enemyUnit = actionWithBoard.getUnitByLocation(enemyBoardLocation);
+      const enemyUnit = gameBoardAction.getUnitByLocation(enemyBoardLocation);
       if (enemyUnit) {
         enemyUnit.hp = enemyUnit.defence
           ? enemyUnit.hp - 0.5 * unit.damage //after defence attack is decreased on 50%

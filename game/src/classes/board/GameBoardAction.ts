@@ -51,7 +51,9 @@ export class GameBoardAction {
   getUnitCondition(boardLocation: boardLocation): boolean {
     //to check: is unit alive or not
     return Boolean(
-      this.gameBoard.getBoardMatrix()[boardLocation.rowNumber][boardLocation.columnNumber]
+      this.gameBoard.getBoardMatrix()[boardLocation.rowNumber][
+        boardLocation.columnNumber
+      ]
     );
   }
 
@@ -61,19 +63,22 @@ export class GameBoardAction {
 
   getUnitTeam(unitBoardLocation: boardLocation): Team {
     return unitBoardLocation.rowNumber <
-      Math.floor(this.gameBoard.getBoardMatrix().length / 2)//because we have odd count of rows and on top side one team and on bottom side - other team
+      Math.floor(this.gameBoard.getBoardMatrix().length / 2) //because we have odd count of rows and on top side one team and on bottom side - other team
       ? Team.redTeam
       : Team.orangeTeam;
   }
 
-  getEnemyNeighborLocation(unitBoardLocation: boardLocation) { //method for melee units who can attack depends on their location on board
+  getEnemyNeighborLocation(unitBoardLocation: boardLocation) {
+    //method for melee units who can attack depends on their location on board
     const neighborUnitLocation: boardLocation[] = [];
     const team = this.getUnitTeam(unitBoardLocation);
     let indexDirection = 0;
-    if (team === Team.redTeam) {//red team is team on top => to check their enemies we should down on board
+    if (team === Team.redTeam) {
+      //red team is team on top => to check their enemies we should down on board
       indexDirection = -1;
-    } else if(team === Team.orangeTeam) indexDirection = 1; // orange team is team on bottom
-    else throw new Error('Sorry, there are only 2 teams');
+    } else if (team === Team.orangeTeam) indexDirection = 1;
+    // orange team is team on bottom
+    else throw new Error("Sorry, there are only 2 teams");
 
     const oppositeEnemyLocation = {
       rowNumber: unitBoardLocation.rowNumber + indexDirection,
@@ -90,7 +95,8 @@ export class GameBoardAction {
       isNextLineWithEnemy && unitBoardLocation.columnNumber - 1 >= 0;
     const isRightEnemy: boolean =
       isNextLineWithEnemy &&
-      unitBoardLocation.columnNumber + 1 <= this.gameBoard.getBoardMatrix().length;
+      unitBoardLocation.columnNumber + 1 <=
+        this.gameBoard.getBoardMatrix().length;
 
     if (isNextLineWithEnemy) {
       if (this.getUnitCondition(oppositeEnemyLocation)) {
@@ -126,11 +132,13 @@ export class GameBoardAction {
     return neighborUnitLocation;
   }
 
-  getEnemyRow(row: number): (boardLocation | null)[] { // for checking enemy row with alive units
+  getEnemyRow(row: number): (boardLocation | null)[] {
+    // for checking enemy row with alive units
     return this.gameBoard
-      .getBoardMatrix()[row].filter((unit) => {
+      .getBoardMatrix()
+      [row].filter((unit) => {
         // @ts-ignore
-      unit.hp > 0;
+        unit.hp > 0;
       })
       .map((unit) => {
         if (this.getUnitLocation(unit as Unit)) {
@@ -152,7 +160,11 @@ export class GameBoardAction {
       indexDirection = -1;
     } else indexDirection = 1;
 
-    if (this.getEnemyRow(unitBoardLocation.rowNumber + indexDirection).length === 0) {//=> there is no any alive units on
+    if (
+      this.getEnemyRow(unitBoardLocation.rowNumber + indexDirection).length ===
+      0
+    ) {
+      //=> there is no any alive units on
       return null;
     }
 
@@ -162,18 +174,23 @@ export class GameBoardAction {
     });
   }
 
-  getNearestEnemyRow(unitBoardLocation: boardLocation): boardLocation[] | null // null if enemies rows are empty
-  {
+  getNearestEnemyRow(unitBoardLocation: boardLocation): boardLocation[] | null {
+    // null if enemies rows are empty
     const team = this.getUnitTeam(unitBoardLocation);
     const gameBoardMatrix = this.gameBoard.getBoardMatrix();
-    if (team === Team.orangeTeam) {//bottom team, matrix rows start with 0
+    if (team === Team.orangeTeam) {
+      //bottom team, matrix rows start with 0
       for (let i = Math.floor(gameBoardMatrix.length / 2) - 1; i >= 0; i--) {
         if (gameBoardMatrix[i].filter((u) => u).length) {
           return this.getEnemyRow(i).filter(this.deleteUnits);
         }
       }
-    } else if(team === Team.redTeam) {
-      for (let i = Math.floor(gameBoardMatrix.length / 2); i <= gameBoardMatrix.length; i++) {
+    } else if (team === Team.redTeam) {
+      for (
+        let i = Math.floor(gameBoardMatrix.length / 2);
+        i <= gameBoardMatrix.length;
+        i++
+      ) {
         if (gameBoardMatrix[i].filter((u) => u).length) {
           return this.getEnemyRow(i).filter(this.deleteUnits);
         }
@@ -182,7 +199,8 @@ export class GameBoardAction {
     return null;
   }
 
-  getAllTeamUnits( //method for units with multitarget behavior, allies is responsible for type of considering team. below there are 2 methods for find all allies and all enemies
+  getAllTeamUnits(
+    //method for units with multitarget behavior, allies is responsible for type of considering team. below there are 2 methods for find all allies and all enemies
     unitBoardLocation: boardLocation,
     allies = false
   ): boardLocation[] {
@@ -204,7 +222,10 @@ export class GameBoardAction {
       }
     } else {
       for (
-        let i = Math.floor(getBoardMatrix.length / 2); i <= getBoardMatrix.length; i++) {
+        let i = Math.floor(getBoardMatrix.length / 2);
+        i <= getBoardMatrix.length;
+        i++
+      ) {
         for (let j = 0; j < getBoardMatrix[i].length; j++)
           if (getBoardMatrix[i][j]) {
             const enemyBoardLocation = this.getUnitLocation(
@@ -219,11 +240,13 @@ export class GameBoardAction {
     return enemyUnitsLocation;
   }
 
-  getAllAlliesLocation(unitBoardLocation: boardLocation) {//method for multi healers
+  getAllAlliesLocation(unitBoardLocation: boardLocation) {
+    //method for multi healers
     return this.getAllTeamUnits(unitBoardLocation, true);
   }
 
-  getAllEnemiesLocation(unitBoardLocation: boardLocation) { //method for multi attack
+  getAllEnemiesLocation(unitBoardLocation: boardLocation) {
+    //method for multi attack
     return this.getAllTeamUnits(unitBoardLocation);
   }
 }

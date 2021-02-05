@@ -9,11 +9,11 @@ export class Heal implements IRoleAction {
   action(
     unit: Unit,
     unitsBoardLocations: boardLocation[],
-    actionWithBoard: GameBoardAction
+    gameBoardAction: GameBoardAction
   ): Unit[] {
     const unitsForHeal: Unit[] = [];
     unitsBoardLocations.forEach((boardLocation) => {
-      const unitForHeal: unit = actionWithBoard.getUnitByLocation(
+      const unitForHeal: unit = gameBoardAction.getUnitByLocation(
         boardLocation
       );
       if (unitForHeal) {

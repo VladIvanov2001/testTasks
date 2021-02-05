@@ -36,7 +36,7 @@ export class UnitAction {
 
   massTargetAction(unit: Unit): void {
     const unitBoardLocation = this.gameBoardAction.getUnitLocation(unit);
-    unit.action(unitBoardLocation as boardLocation, this.gameBoardAction);
+    unit.action(unitBoardLocation as boardLocation, this.gameBoardAction, null);
   }
 
   defenceAction(unit: Unit): void {
@@ -56,7 +56,8 @@ export class UnitAction {
     return this.gameBoardAction.getUnitLocation(unit);
   }
 
-  killUnit(boardLocation: boardLocation): void {//all death units are null units
+  killUnit(boardLocation: boardLocation): void {
+    //all death units are null units
     this.gameBoard.putUnitOnBoard(null, boardLocation);
   }
 
@@ -69,12 +70,14 @@ export class UnitAction {
     });
   }
 
-  action( //check target behavior and does action depends on behavior
+  action(
+    //check target behavior and does action depends on behavior
     unit: Unit
   ): void | ((targetEnemyBoardLocation: boardLocation) => void) {
     const unitBoardLocation = this.gameBoardAction.getUnitLocation(unit);
     if (unitBoardLocation) {
-      if (unit.targetBehavior instanceof MultiTarget) {//unit action and after attack you should check alive units
+      if (unit.targetBehavior instanceof MultiTarget) {
+        //unit action and after attack you should check alive units
         this.massTargetAction(unit);
         this.checkDeadUnits(
           this.gameBoardAction.getAllEnemiesLocation(
@@ -103,7 +106,7 @@ export class UnitAction {
     switch (action) {
       case TypeOfAction.action:
         if (
-          (unit.targetBehavior instanceof SingleTarget) &&//if unit has single target behavior you should pass target location
+          unit.targetBehavior instanceof SingleTarget && //if unit has single target behavior you should pass target location
           targetLocation &&
           actionType
         ) {

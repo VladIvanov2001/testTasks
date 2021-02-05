@@ -9,11 +9,11 @@ export class Paralyze implements IRoleAction {
   action(
     unit: Unit,
     enemiesBoardLocations: boardLocation[],
-    actionWithBoard: GameBoardAction
+    gameBoardAction: GameBoardAction
   ): Unit[] {
     const paralyzedUnits: Unit[] = [];
     enemiesBoardLocations.forEach((enemyBoardLocation) => {
-      const enemyUnit: unit = actionWithBoard.getUnitByLocation(
+      const enemyUnit: unit = gameBoardAction.getUnitByLocation(
         enemyBoardLocation
       );
       if (enemyUnit) {

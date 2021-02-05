@@ -4,13 +4,7 @@ import { SingleTarget } from "../targets/SingleTarget";
 import { RangeType } from "../range/RangeType";
 
 export class Sirena extends Unit {
-  constructor(
-    name = "Sirena",
-    hp = 80,
-    damage = 0,
-    heal = 0,
-    initiative = 20
-  ) {
+  constructor(name = "Sirena", hp = 80, damage = 0, heal = 0, initiative = 20) {
     super(
       name,
       hp,

@@ -1,5 +1,5 @@
 import { Unit } from "./Unit";
-import { unit } from "../types/types";
+import { PossibleUnit } from "../types/types";
 import { Randomizer } from "./Randomizer";
 //this class describes move l
 export class Queue {
@@ -7,14 +7,14 @@ export class Queue {
   currentUnit: Unit;
   queueSwitcher: Generator<Unit>;
 
-  constructor(units: unit[][], randomizer: Randomizer) {
+  constructor(units: PossibleUnit[][], randomizer: Randomizer) {
     this.queueSwitcher = this.queueGenerator();
     this.queueList = this.randomUnitWithEqualInitiative(
       units.filter((aliveUnit) => aliveUnit) as Unit[][]
     ).reduce((accumulator, currentArray) => [
       ...accumulator,
       ...randomizer
-        .shuffleListSequance(currentArray),
+        .shuffleListSequence(currentArray),
     ]);
     this.currentUnit = this.queueList[0];
   }

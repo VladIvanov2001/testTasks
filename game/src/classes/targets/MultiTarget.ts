@@ -1,8 +1,8 @@
 import { ICountTarget } from "../../interfaces/ICountTarget";
-import { boardLocation } from "../../types/types";
+import { BoardLocation } from "../../types/types";
 
 export class MultiTarget implements ICountTarget {
-  attackTargets(possibleTargets: boardLocation[]): boardLocation[] {
+  attackTargets(possibleTargets: BoardLocation[]): BoardLocation[] {
     return possibleTargets;
   }
 }

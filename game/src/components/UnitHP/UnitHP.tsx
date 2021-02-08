@@ -1,13 +1,14 @@
 import React, { ReactElement } from "react";
+import './UnitHP.css'
 
-interface IUnitHP {
+interface IUnitHPProps {
   hp: number;
 }
 
-export const UnitHP = ({ hp }: IUnitHP): ReactElement => {
+export const UnitHP = ({ hp }: IUnitHPProps): ReactElement => {
   return (
-    <div>
-      <img alt="hp" src="../../assets/roleActions/hp.jpg" />
+    <div className="unit-hp-container">
+      <img alt="hp" src="/roleActions/hp.jpg" />
       <span>{hp}</span>
     </div>
   );

@@ -1,19 +1,19 @@
 import { IRoleAction } from "../../../interfaces/IRoleAction";
 import { Unit } from "../../Unit";
-import { boardLocation } from "../../../types/types";
+import { BoardLocation } from "../../../types/types";
 import { GameBoardAction } from "../../board/GameBoardAction";
-import { unit } from "../../../types/types";
+import { PossibleUnit } from "../../../types/types";
 
 export class Healer implements IRoleAction {
   //class for units who can heal
   action(
     unit: Unit,
-    unitsBoardLocations: boardLocation[],
+    unitsBoardLocations: BoardLocation[],
     gameBoardAction: GameBoardAction
   ): Unit[] {
     const unitsForHeal: Unit[] = [];
     unitsBoardLocations.forEach((boardLocation) => {
-      const unitForHeal: unit = gameBoardAction.getUnitByLocation(
+      const unitForHeal: PossibleUnit = gameBoardAction.getUnitByLocation(
         boardLocation
       );
       if (unitForHeal) {

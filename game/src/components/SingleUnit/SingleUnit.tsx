@@ -5,7 +5,9 @@ import { Unit } from "../../classes/Unit";
 import { GeneralUnitImage } from "../GeneralUnitImage/GeneralUnitImage";
 import { UnitInfo } from "../UnitInfo/UnitInfo";
 
-interface IUnitItemProps {
+import './SingleUnit.css'
+
+interface ISingleUnit {
   unit: Unit;
   isDead: boolean;
   isDefending: boolean;
@@ -21,7 +23,7 @@ export const SingleUnit = ({
   isCurrent,
   isTarget,
   handleSelectTarget,
-}: IUnitItemProps): ReactElement => {
+}: ISingleUnit): ReactElement => {
   return (
     <div
       className={cn({

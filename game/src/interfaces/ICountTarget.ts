@@ -1,8 +1,8 @@
-import { boardLocation } from "../types/types";
+import { BoardLocation, PossibleBoardLocation } from "../types/types";
 
 export interface ICountTarget {
   attackTargets(
-    possibleTargets: boardLocation[],
-    targetLocation: boardLocation | null
-  ): boardLocation[];
+    possibleTargets: BoardLocation[],
+    targetLocation: PossibleBoardLocation
+  ): BoardLocation[];
 }

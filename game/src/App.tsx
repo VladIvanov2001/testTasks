@@ -1,26 +1,26 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import {
-  boardLocation,
-  queueSwitcher,
+  BoardLocation,
+  QueueSwitcher,
   Team,
   TypeOfAction,
-  unit,
-  unitAction
+  PossibleUnit,
+  UnitActionType
 } from "./types/types";
 import { Unit } from "./classes/Unit";
-import { Game } from "./Game";
+import { Game } from "./classes/Game";
 import { GameOver } from "./components/GameOver/GameOver";
 import { MultiTarget } from "./classes/targets/MultiTarget";
-import { Sidebar } from "./components/InfoPanel/InfoPanel";
+import { InfoPanel } from "./components/InfoPanel/InfoPanel";
 import { GameField } from "./components/GameField/GameField";
-import {ROWS, COLUMNS} from "./constants";
+import {ROWS, COLUMNS } from './constants/constants';
 
-let initialUnits: unit[][] | null = null;
+let initialUnits: PossibleUnit[][] | null = null;
 
 function App(): ReactElement {
-  const [units, setUnits] = useState<unit[][]>();
-  const [queueSwitcher, setQueueSwitcher] = useState<queueSwitcher>();
-  const [unitAction, setUnitAction] = useState<unitAction>();
+  const [units, setUnits] = useState<PossibleUnit[][]>();
+  const [queueSwitcher, setQueueSwitcher] = useState<QueueSwitcher>();
+  const [unitAction, setUnitAction] = useState<UnitActionType>();
   const [toSelectTarget, setToSelectTarget] = useState<boolean>(false);
   const [currentUnit, setCurrentUnit] = useState<Unit>();
   const [turnsCount, setTurnsCount] = useState<number>(1);
@@ -38,7 +38,7 @@ function App(): ReactElement {
     }
 
     const unitBoardLocation = unitAction?.getBoardLocationOfTarget(unit);
-    unitAction?.doAction(TypeOfAction.Action, currentUnit as Unit, unitBoardLocation as boardLocation);
+    unitAction?.doAction(TypeOfAction.Action, currentUnit as Unit, unitBoardLocation as BoardLocation);
     setToSelectTarget(false);
     setTurnsCount(turnsCount + 1);
   }
@@ -93,10 +93,10 @@ function App(): ReactElement {
             toSelectTarget={toSelectTarget}
             handleSelectTarget={handleSelectTarget}
             currentUnit={currentUnit as Unit}
-            unitAction={unitAction as unitAction}
+            unitAction={unitAction as UnitActionType}
           />
-          <Sidebar
-            queueSwitcher={queueSwitcher as queueSwitcher}
+          <InfoPanel
+            queueSwitcher={queueSwitcher as QueueSwitcher}
             toSelectTarget={toSelectTarget}
             setToSelectTarget={setToSelectTarget}
             currentUnit={currentUnit as Unit}

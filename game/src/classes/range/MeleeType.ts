@@ -1,31 +1,31 @@
 import { IAttackRange } from "../../interfaces/IAttackRange";
-import { boardLocation, Team } from "../../types/types";
+import { BoardLocation, Team } from "../../types/types";
 import { GameBoardAction } from "../board/GameBoardAction";
 
 export class MeleeType implements IAttackRange {
   rangeAttack(
-    unitBoardLocation: boardLocation,
+    unitBoardLocation: BoardLocation,
     gameBoardAction: GameBoardAction
-  ): boardLocation[] {
-    const neighborEnemiesLocation = gameBoardAction.getAdjacentEnemiesLocation(
-      unitBoardLocation
-    );
+  ): BoardLocation[] {
+    const adjacentEnemiesLocation = gameBoardAction.getAdjacentEnemiesLocation(unitBoardLocation);
 
-    if (neighborEnemiesLocation.length) {
-      return neighborEnemiesLocation;
+    if (adjacentEnemiesLocation.length) {
+      return adjacentEnemiesLocation;
     }
 
-    const unitTeam: Team | null = gameBoardAction.getTeamOfUnit(
-      unitBoardLocation
-    );
+    const unitTeam: Team | null = gameBoardAction.getTeamOfUnit(unitBoardLocation);
     if (unitTeam && unitTeam === gameBoardAction.getTeamOfNextLine(unitBoardLocation)) {
       return [];
     }
 
-    const nearestRowEnemiesLocation: boardLocation[] | null = gameBoardAction.getNearestLineEnemiesLocation(unitBoardLocation);
-    if (nearestRowEnemiesLocation) {
-      return nearestRowEnemiesLocation;
+    const nearestLineEnemiesLocation: BoardLocation[] | null = gameBoardAction.getNearestLineEnemiesLocation(
+      unitBoardLocation,
+    );
+
+    if (nearestLineEnemiesLocation) {
+      return nearestLineEnemiesLocation;
     }
+
     return [];
   }
 }

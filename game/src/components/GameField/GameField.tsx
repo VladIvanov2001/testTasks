@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Unit } from "../../classes/Unit";
-import { unit, unitAction } from "../../types/types";
+import { PossibleUnit, UnitActionType } from "../../types/types";
 import { SingleUnit } from "../SingleUnit/SingleUnit";
 import './GameField.css'
 
@@ -10,7 +10,7 @@ interface IBoardProps {
   toSelectTarget: boolean;
   handleSelectTarget: (unit: Unit) => void;
   currentUnit: Unit;
-  unitAction: unitAction;
+  unitAction: UnitActionType;
 }
 
 export const GameField = ({
@@ -21,7 +21,7 @@ export const GameField = ({
                         unitAction,
                         handleSelectTarget,
                       }: IBoardProps): ReactElement => {
-  const [possibleTargets, setPossibleTargets] = useState<unit[]>();
+  const [possibleTargets, setPossibleTargets] = useState<PossibleUnit[]>();
 
   useEffect(() => {
     if (currentUnit) {

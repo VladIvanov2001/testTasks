@@ -12,6 +12,14 @@
   flex-direction: row;
 }
 
+.board-row:first-child, .board-row:nth-child(2){
+  border: 3px solid #ff0000;
+}
+
+.board-row:last-child, .board-row:nth-child(3){
+  border: 3px solid orange;
+}
+
 .board-row:nth-child(2) {
   margin-bottom: 20px;
 }

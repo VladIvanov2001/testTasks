@@ -1,13 +1,13 @@
-import { boardLocation, Team, TypeOfAction, unit } from "./types/types";
-import { Unit } from "./classes/Unit";
-import { Queue } from "./classes/TurnGenerator";
-import { GameBoardAction } from "./classes/board/GameBoardAction";
-import { Randomizer } from "./classes/Randomizer";
-import { GameBoard } from "./classes/board/GameBoard";
-import { UnitAction } from "./classes/board/UnitAction";
+import { BoardLocation, Team, TypeOfAction, PossibleUnit } from "../types/types";
+import { Unit } from "./Unit";
+import { Queue } from "./Queue";
+import { GameBoardAction } from "./board/GameBoardAction";
+import { Randomizer } from "./Randomizer";
+import { GameBoard } from "./board/GameBoard";
+import { UnitAction } from "./board/UnitAction";
 
 type initialGameData = {
-  units: unit[][];
+  units: PossibleUnit[][];
   queueSwitcher: Queue;
   unitAction: UnitAction;
 };
@@ -35,9 +35,9 @@ export class Game {
   static finish(currentUnit: Unit): { isFinished: boolean; currentTeam: Team } {
     return {
       isFinished: !this.gameBoardAction
-        .getAllEnemiesLocation(this.gameBoardAction.getUnitBoardLocation(currentUnit) as boardLocation)
+        .getAllEnemiesLocation(this.gameBoardAction.getUnitBoardLocation(currentUnit) as BoardLocation)
         .some((enemyLocation) => this.gameBoardAction.isAlive(enemyLocation)),
-      currentTeam: this.gameBoardAction.getTeamOfUnit(this.gameBoardAction.getUnitBoardLocation(currentUnit) as boardLocation),
+      currentTeam: this.gameBoardAction.getTeamOfUnit(this.gameBoardAction.getUnitBoardLocation(currentUnit) as BoardLocation),
     };
   }
 }

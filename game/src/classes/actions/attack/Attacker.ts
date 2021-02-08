@@ -1,18 +1,18 @@
 import { IRoleAction } from "../../../interfaces/IRoleAction";
 import { Unit } from "../../Unit";
-import { boardLocation, unit } from "../../../types/types";
+import { BoardLocation, PossibleUnit } from "../../../types/types";
 import { GameBoardAction } from "../../board/GameBoardAction";
 
 export class Attacker implements IRoleAction {
   // class for units who can attack
   action(
     unit: Unit,
-    enemiesBoardLocations: boardLocation[],
+    enemiesBoardLocations: BoardLocation[],
     gameBoardAction: GameBoardAction
   ): Unit[] {
     const damagedUnits: Unit[] = [];
     enemiesBoardLocations.forEach((enemyBoardLocation) => {
-      const enemyUnit:unit = gameBoardAction.getUnitByLocation(enemyBoardLocation);
+      const enemyUnit:PossibleUnit = gameBoardAction.getUnitByLocation(enemyBoardLocation);
       if (enemyUnit) {
         const restHp = enemyUnit.getDefence()
           ? enemyUnit.getHP() - 0.5 * unit.getDealValue()

@@ -1,19 +1,18 @@
 import { IRoleAction } from "../../../interfaces/IRoleAction";
 import { Unit } from "../../Unit";
-import { boardLocation } from "../../../types/types";
+import { BoardLocation, PossibleUnit } from "../../../types/types";
 import { GameBoardAction } from "../../board/GameBoardAction";
-import { unit } from "../../../types/types";
 
 export class Paralyze implements IRoleAction {
   // class for unit who can paralyze
   action(
     unit: Unit,
-    enemiesBoardLocations: boardLocation[],
+    enemiesBoardLocations: BoardLocation[],
     gameBoardAction: GameBoardAction
   ): Unit[] {
     const paralyzedUnits: Unit[] = [];
     enemiesBoardLocations.forEach((enemyBoardLocation) => {
-      const enemyUnit: unit = gameBoardAction.getUnitByLocation(
+      const enemyUnit: PossibleUnit = gameBoardAction.getUnitByLocation(
         enemyBoardLocation
       );
       if (enemyUnit) {

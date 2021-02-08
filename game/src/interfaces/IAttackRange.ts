@@ -1,9 +1,9 @@
-import { boardLocation } from "../types/types";
+import { BoardLocation } from "../types/types";
 import { GameBoardAction } from "../classes/board/GameBoardAction";
 
 export interface IAttackRange {
   rangeAttack(
-    unitBoardLocation: boardLocation,
+    unitBoardLocation: BoardLocation,
     gameBoardAction: GameBoardAction
-  ): boardLocation[];
+  ): BoardLocation[];
 }

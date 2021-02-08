@@ -1,9 +1,9 @@
 import { GameBoardAction } from "./GameBoardAction";
 import { GameBoard } from "./GameBoard";
-import { Queue } from "../TurnGenerator";
+import { Queue } from "../Queue";
 import { Unit } from "../Unit";
-import { boardLocation } from "../../types/types";
-import { unit, TypeOfAction } from "../../types/types";
+import { BoardLocation } from "../../types/types";
+import { PossibleUnit, TypeOfAction } from "../../types/types";
 import { MultiTarget } from "../targets/MultiTarget";
 import { SingleTarget } from "../targets/SingleTarget";
 
@@ -22,8 +22,8 @@ export class UnitAction {
   doAction(
     action: TypeOfAction,
     unit: Unit,
-    targetBoardLocation?: boardLocation,
-  ): void | ((targetEnemyBoardLocation: boardLocation) => void) {
+    targetBoardLocation?: BoardLocation,
+  ): void | ((targetEnemyBoardLocation: BoardLocation) => void) {
     const dealAction = this.deal(unit);
     switch (action) {
       case TypeOfAction.Action:
@@ -41,20 +41,20 @@ export class UnitAction {
     }
   }
 
-  private killUnit(boardLocation: boardLocation): void {
+  private killUnit(boardLocation: BoardLocation): void {
     this.board.setUnit(boardLocation, null);
   }
 
-  private checkAndRemoveDeadUnits(enemiesBoardLocations: boardLocation[]): void {
-    enemiesBoardLocations.forEach((e) => {
-      const enemyUnit: unit = this.gameBoardAction.getUnitByLocation(e);
+  private checkAndRemoveDeadUnits(enemiesBoardLocations: BoardLocation[]): void {
+    enemiesBoardLocations.forEach((enemy) => {
+      const enemyUnit: PossibleUnit = this.gameBoardAction.getUnitByLocation(enemy);
       if (enemyUnit && enemyUnit.getHP() <= 0) {
-        this.killUnit(e);
+        this.killUnit(enemy);
       }
     });
   }
 
-  private dealSingleTarget(unit: Unit, targetEnemyBoardLocation: boardLocation): void {
+  private dealSingleTarget(unit: Unit, targetEnemyBoardLocation: BoardLocation): void {
     const unitBoardLocation = this.gameBoardAction.getUnitBoardLocation(unit);
     if (unitBoardLocation) {
       unit.action(unitBoardLocation, this.gameBoardAction, targetEnemyBoardLocation);
@@ -63,23 +63,23 @@ export class UnitAction {
 
   private dealAllTargets(unit: Unit) {
     const unitBoardLocation = this.gameBoardAction.getUnitBoardLocation(unit);
-    unit.action(unitBoardLocation as boardLocation, this.gameBoardAction);
+    unit.action(unitBoardLocation as BoardLocation, this.gameBoardAction);
   }
 
-  private deal(unit: Unit): void | ((targetEnemyBoardLocation: boardLocation) => void) {
+  private deal(unit: Unit): void | ((targetEnemyBoardLocation: BoardLocation) => void) {
     const unitBoardLocation = this.gameBoardAction.getUnitBoardLocation(unit);
 
     if (unitBoardLocation && unit.getCountTarget() instanceof SingleTarget) {
-      return (targetEnemyBoardLocation: boardLocation) => {
+      return (targetEnemyBoardLocation: BoardLocation) => {
         this.dealSingleTarget(unit, targetEnemyBoardLocation);
         this.checkAndRemoveDeadUnits(
-          this.gameBoardAction.getAllEnemiesLocation(this.gameBoardAction.getUnitBoardLocation(unit) as boardLocation),
+          this.gameBoardAction.getAllEnemiesLocation(this.gameBoardAction.getUnitBoardLocation(unit) as BoardLocation),
         );
       };
     } else if (unitBoardLocation && unit.getCountTarget() instanceof MultiTarget) {
       this.dealAllTargets(unit);
       this.checkAndRemoveDeadUnits(
-        this.gameBoardAction.getAllEnemiesLocation(this.gameBoardAction.getUnitBoardLocation(unit) as boardLocation),
+        this.gameBoardAction.getAllEnemiesLocation(this.gameBoardAction.getUnitBoardLocation(unit) as BoardLocation),
       );
     }
   }
@@ -88,13 +88,13 @@ export class UnitAction {
     unit.setIsDefending(true);
   }
 
-  getPossibleTargetsOfUnit(unit: Unit): unit[] {
+  getPossibleTargetsOfUnit(unit: Unit): PossibleUnit[] {
     return unit
-      .getPossibleTargets(this.gameBoardAction.getUnitBoardLocation(unit) as boardLocation, this.gameBoardAction)
+      .getPossibleTargets(this.gameBoardAction.getUnitBoardLocation(unit) as BoardLocation, this.gameBoardAction)
       .map((loc) => this.gameBoardAction.getUnitByLocation(loc));
   }
 
-  getBoardLocationOfTarget(unit: Unit): boardLocation | null {
+  getBoardLocationOfTarget(unit: Unit): BoardLocation | null {
     return this.gameBoardAction.getUnitBoardLocation(unit);
   }
 }

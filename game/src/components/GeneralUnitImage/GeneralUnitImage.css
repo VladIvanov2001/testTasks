@@ -4,15 +4,21 @@
     position: relative;
 }
 
-.unit-image-container .status {
-    position: absolute;
-    top: 25%;
-    left: 28%;
+.unit-image-container>img{
+    width: 220px;
+    height: 220px;
 }
 
-img{
-    width: 150px;
-    height: 150px;
+.unit-image-container .status {
+    position: absolute;
+    top: 3%;
+    left: 1%;
+}
+
+.user-info img{
+    width: 25px;
+    height: 25px;
+    z-index: 10;
 }
 
 .status {

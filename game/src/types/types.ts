@@ -1,26 +1,26 @@
 import { Unit } from "../classes/Unit";
-import { Queue } from "../classes/TurnGenerator";
+import { Queue } from "../classes/Queue";
 import { UnitAction } from "../classes/board/UnitAction";
 
-export type boardLocation = {
+export type BoardLocation = {
   columnNumber: number;
   rowNumber: number;
 };
 
-export type possibleBoardLocation = boardLocation | null;
+export type PossibleBoardLocation = BoardLocation | null;
 
-export type unit = Unit | null;
+export type PossibleUnit = Unit | null;
 
-export type unitAction = InstanceType<typeof UnitAction>
+export type UnitActionType = InstanceType<typeof UnitAction>
 
-export type unitMatrix = Array<Array<unit>>;
+export type UnitMatrix = Array<Array<PossibleUnit>>;
 
 export enum Team {
   OrangeTeam = "ORANGE_TEAM",
   RedTeam = "RED_TEAM",
 }
 
-export type queueSwitcher = InstanceType<typeof Queue>;
+export type QueueSwitcher = InstanceType<typeof Queue>;
 
 export enum TypeOfAction {
   Action = "ACTION",

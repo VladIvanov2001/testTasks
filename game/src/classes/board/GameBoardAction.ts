@@ -1,15 +1,16 @@
 import { GameBoard } from './GameBoard';
 import { Unit } from "../Unit";
-import { boardLocation, Team, unit } from "../../types/types";
+import { BoardLocation, Team, PossibleUnit, PossibleBoardLocation } from '../../types/types';
 
+//this class is responsible for action with boards.
 export class GameBoardAction {
   private gameBoard: GameBoard;
 
-  constructor(board: GameBoard) {
-    this.gameBoard = board;
+  constructor(gameBoard: GameBoard) {
+    this.gameBoard = gameBoard;
   }
 
-  getUnitBoardLocation(unit: Unit): boardLocation | null {
+  getUnitBoardLocation(unit: Unit): PossibleBoardLocation {
     let rowNumber = 0;
     let columnNumber = 0;
     let wasFound = false;
@@ -36,32 +37,32 @@ export class GameBoardAction {
     }
   }
 
-  getUnitByLocation(boardLocation: boardLocation): unit {
+  getUnitByLocation(boardLocation: BoardLocation): PossibleUnit {
     if (boardLocation) {
       return this.gameBoard.getBoardMatrix()[boardLocation.rowNumber][boardLocation.columnNumber];
     }
     return null;
   }
 
-  isAlive(boardLocation: boardLocation): boolean {
+  isAlive(boardLocation: BoardLocation): boolean {
     return Boolean(this.gameBoard.getBoardMatrix()[boardLocation.rowNumber][boardLocation.columnNumber]);
   }
 
-  private removeDeadUnits<TValue>(value: TValue | null | undefined): value is TValue {
-    return value !== null && value !== undefined;
+  removeDeadUnits<TValue>(value: TValue | null): value is TValue {
+    return value !== null;
   }
 
-  getTeamOfUnit(unitBoardLocation: boardLocation): Team {
+  getTeamOfUnit(unitBoardLocation: BoardLocation): Team {
     return unitBoardLocation.rowNumber < Math.floor(this.gameBoard.getBoardMatrix().length / 2)
       ? Team.RedTeam
       : Team.OrangeTeam;
   }
 
-  getAdjacentEnemiesLocation(unitBoardLocation: boardLocation): boardLocation[] {
+  getAdjacentEnemiesLocation(unitBoardLocation: BoardLocation): BoardLocation[] {
     const team = this.getTeamOfUnit(unitBoardLocation);
     const valueChange: number = team === Team.RedTeam ? 1 : -1;
 
-    const adjacentUnitsLocation: boardLocation[] = [];
+    const adjacentUnitsLocation: BoardLocation[] = [];
 
     const oppositeEnemyLocation = {
       rowNumber: unitBoardLocation.rowNumber + valueChange,
@@ -103,7 +104,7 @@ export class GameBoardAction {
     return adjacentUnitsLocation;
   }
 
-  private getRowEnemiesLocation(rowIndex: number): (boardLocation | null)[] {
+  private getRowEnemiesLocation(rowIndex: number): (PossibleBoardLocation)[] {
     return this.gameBoard
       .getBoardMatrix()[rowIndex].filter((u) => u && u.getHP() > 0)
       .map((u) => {
@@ -115,7 +116,7 @@ export class GameBoardAction {
       });
   }
 
-  getTeamOfNextLine(unitBoardLocation: boardLocation): Team | null {
+  getTeamOfNextLine(unitBoardLocation: BoardLocation): Team | null {
     const team = this.getTeamOfUnit(unitBoardLocation);
     const valueChange: number = team === Team.RedTeam ? 1 : -1;
 
@@ -129,7 +130,7 @@ export class GameBoardAction {
     });
   }
 
-  getNearestLineEnemiesLocation(unitBoardLocation: boardLocation): boardLocation[] | null {
+  getNearestLineEnemiesLocation(unitBoardLocation: BoardLocation): BoardLocation[] | null {
     const matrix = this.gameBoard.getBoardMatrix();
     const teamOfUnit: Team = this.getTeamOfUnit(unitBoardLocation);
     const rowsHalfIndex = Math.floor(matrix.length / 2);
@@ -157,7 +158,7 @@ export class GameBoardAction {
     return team === Team.OrangeTeam ? Team.RedTeam : Team.OrangeTeam;
   }
 
-  private getAllTeamUnits(unitBoardLocation: boardLocation, allies = false): boardLocation[] {
+  private getAllTeamUnits(unitBoardLocation: BoardLocation, allies = false): BoardLocation[] {
     const matrix = this.gameBoard.getBoardMatrix();
     const teamOfUnit: Team = this.getTeamOfUnit(unitBoardLocation);
     const consideringTeam = allies ? this.switchTeam(teamOfUnit) : teamOfUnit;
@@ -191,11 +192,11 @@ export class GameBoardAction {
     return enemiesUnitsLocation;
   }
 
-  getAllEnemiesLocation(unitBoardLocation: boardLocation): boardLocation[] {
+  getAllEnemiesLocation(unitBoardLocation: BoardLocation): BoardLocation[] {
     return this.getAllTeamUnits(unitBoardLocation);
   }
 
-  getAllAlliesLocation(unitBoardLocation: boardLocation): boardLocation[] {
+  getAllAlliesLocation(unitBoardLocation: BoardLocation): BoardLocation[] {
     return this.getAllTeamUnits(unitBoardLocation, true);
   }
 }

@@ -1,19 +1,20 @@
 import { ICountTarget } from "../../interfaces/ICountTarget";
-import { boardLocation } from "../../types/types";
+import { BoardLocation } from "../../types/types";
 
 export class SingleTarget implements ICountTarget {
   attackTargets(
-    possibleTargets: boardLocation[],
-    targetLocation: boardLocation
-  ): boardLocation[] {
+    possibleTargets: BoardLocation[],
+    targetLocation: BoardLocation
+  ): BoardLocation[] {
     if (
-      possibleTargets.findIndex((target) => {
-        target.columnNumber === targetLocation.columnNumber &&
-          target.rowNumber === targetLocation.rowNumber;
-      }) !== -1
+      targetLocation &&
+      possibleTargets.findIndex(
+        (t) => t.rowNumber === targetLocation.rowNumber && t.columnNumber === targetLocation.columnNumber,
+      ) !== -1
     ) {
       return [targetLocation];
     }
+
     return [];
   }
 }

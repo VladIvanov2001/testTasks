@@ -20,15 +20,10 @@ const defineRoleForPicture = (roleType: IRoleAction): string => {
   return "damage.png";
 };
 
-export const UnitDealValue = ({ dealValue,
-                                roleAction,
-}: IUnitDealValueProps): ReactElement => {
+export const UnitDealValue = ({ dealValue, roleAction, }: IUnitDealValueProps): ReactElement => {
   return (
     <div>
-      <img
-        alt="value"
-        src={`../../assets/${defineRoleForPicture(roleAction)}`}
-      />
+      <img alt="value" src={`/roleActions/${defineRoleForPicture(roleAction)}`} />
       <span>{dealValue}</span>
     </div>
   );

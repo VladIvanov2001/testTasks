@@ -27,7 +27,7 @@ export class Randomizer {
     ];
   }
 
-  shuffleListSequance(unitsList: Unit[]): Unit[] {
+  shuffleListSequence(unitsList: Unit[]): Unit[] {
     for (let i = unitsList.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [unitsList[i], unitsList[j]] = [unitsList[j], unitsList[i]];

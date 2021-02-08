@@ -4,12 +4,12 @@ import { COUNT_UNIT_FOR_TURN } from "../../constants/constants";
 import { GeneralUnitImage } from "../GeneralUnitImage/GeneralUnitImage";
 import './Turn.css';
 
-interface ITurn{
+interface ITurnProps{
   currentUnit: Unit;
   unitOrder: Unit[];
 }
 
-export const Turn = ({currentUnit, unitOrder}:ITurn):ReactElement =>{
+export const Turn = ({currentUnit, unitOrder}:ITurnProps):ReactElement =>{
   const [currentUnitOrder, setCurrentUnitOrder] = useState<Unit[]>(unitOrder);
 
   useEffect(()=>{
@@ -31,6 +31,7 @@ export const Turn = ({currentUnit, unitOrder}:ITurn):ReactElement =>{
         return(
         <div className="turn-item" key={idx}>
          <GeneralUnitImage name={unit.getName()} />
+         <span>{Math.floor(unit.getHP() / unit.getMaxHp()) * 100}%</span>
         </div>
         )
       })}

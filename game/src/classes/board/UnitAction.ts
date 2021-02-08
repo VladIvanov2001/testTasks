@@ -51,6 +51,13 @@ export class UnitAction {
       if (enemyUnit && enemyUnit.getHP() <= 0) {
         this.killUnit(enemy);
       }
+
+      if(enemyUnit){
+        if(enemyUnit.getHP()<=0){
+          this.killUnit(enemy)
+        }
+      }
+      else throw new Error('sorry')
     });
   }
 

@@ -1,23 +1,21 @@
 import { Unit } from "../Unit";
 import { RangeType } from "../range/RangeType";
 import { SingleTarget } from "../targets/SingleTarget";
-import { Attack } from "../actions/attack/Attack";
+import { Attacker } from "../actions/attack/Attacker";
 
 export class ElfArcher extends Unit {
   constructor(
     name = "Elf Archer",
     hp = 90,
-    damage = 45,
-    heal = 0,
+    dealValue = 45,
     initiative = 60
   ) {
     super(
       name,
       hp,
-      damage,
-      heal,
+      dealValue,
       initiative,
-      new Attack(),
+      new Attacker(),
       new RangeType(),
       new SingleTarget()
     );

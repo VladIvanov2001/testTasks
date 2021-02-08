@@ -1,23 +1,21 @@
 import { Unit } from "../Unit";
 import { SingleTarget } from "../targets/SingleTarget";
 import { MeleeType } from "../range/MeleeType";
-import { Attack } from "../actions/attack/Attack";
+import { Attacker } from "../actions/attack/Attacker";
 
 export class Centaur extends Unit {
   constructor(
     name = "Centaur",
     hp = 150,
-    damage = 50,
-    heal = 0,
+    dealValue = 50,
     initiative = 50
   ) {
     super(
       name,
       hp,
-      damage,
-      heal,
+      dealValue,
       initiative,
-      new Attack(),
+      new Attacker(),
       new MeleeType(),
       new SingleTarget()
     );

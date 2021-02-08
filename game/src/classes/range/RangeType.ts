@@ -1,7 +1,7 @@
 import { IAttackRange } from "../../interfaces/IAttackRange";
 import { boardLocation } from "../../types/types";
 import { GameBoardAction } from "../board/GameBoardAction";
-import { Heal } from "../actions/health/Heal";
+import { Healer } from "../actions/health/Healer";
 
 export class RangeType implements IAttackRange {
   rangeAttack(
@@ -9,11 +9,8 @@ export class RangeType implements IAttackRange {
     gameBoardAction: GameBoardAction
   ): boardLocation[] {
     const unit = gameBoardAction.getUnitByLocation(unitBoardLocation);
-
-    if (unit?.roleAction instanceof Heal) {
-      return gameBoardAction.getAllAlliesLocation(unitBoardLocation);
-    } else {
-      return gameBoardAction.getAllEnemiesLocation(unitBoardLocation);
-    }
+    return unit && unit.getDealerType() instanceof Healer
+      ? gameBoardAction.getAllAlliesLocation(unitBoardLocation)
+      : gameBoardAction.getAllEnemiesLocation(unitBoardLocation);
   }
 }

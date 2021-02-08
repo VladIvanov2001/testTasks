@@ -27,8 +27,7 @@ export class Randomizer {
     ];
   }
 
-  mixUnitOrder(unitsList: Unit[]): Unit[] {
-    //Fisher–Yates shuffle
+  shuffleListSequance(unitsList: Unit[]): Unit[] {
     for (let i = unitsList.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [unitsList[i], unitsList[j]] = [unitsList[j], unitsList[i]];
@@ -36,23 +35,24 @@ export class Randomizer {
     return unitsList;
   }
 
-  getIndexForMix(): number {
-    return Math.floor(Math.random() * this.mixUnitOrder.length);
+  generateIndex(): number {
+    return Math.floor(Math.random() * this.unitList.length);
   }
 
   generateUnit(): Unit {
-    return new this.unitList[this.getIndexForMix()]();
+    return new this.unitList[this.generateIndex()]();
   }
 
-  generateGameBoard(rows: number, columns: number): Unit[][] {
-    const gameBoard: Unit[][] = [];
-    for (let i = 0; i < rows; i++) {
-      const unitsOnRow: Unit[] = [];
-      for (let j = 0; j < columns; j++) {
-        unitsOnRow.push(this.generateUnit());
+  generateGameBoard(rowsCount: number, columnsCount: number): Unit[][] {
+    const matrix: Unit[][] = [];
+    for (let i = 0; i < rowsCount; i += 1) {
+      const row: Unit[] = [];
+      for (let j = 0; j < columnsCount; j += 1) {
+        row.push(this.generateUnit());
       }
-      gameBoard.push(unitsOnRow);
+      matrix.push(row);
     }
-    return gameBoard;
+
+    return matrix;
   }
 }

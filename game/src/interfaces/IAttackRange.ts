@@ -4,6 +4,6 @@ import { GameBoardAction } from "../classes/board/GameBoardAction";
 export interface IAttackRange {
   rangeAttack(
     unitBoardLocation: boardLocation,
-    actionWithBoard: GameBoardAction
+    gameBoardAction: GameBoardAction
   ): boardLocation[];
 }

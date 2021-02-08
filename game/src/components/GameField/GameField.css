@@ -1,18 +1,17 @@
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
+.board-container {
+  width: fit-content;
+  margin: auto auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.status {
-  margin-bottom: 10px;
-}
-
-.game {
+.board-row {
+  width: inherit;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
 }
 
-.game-info {
-  margin-left: 20px;
+.board-row:nth-child(2) {
+  margin-bottom: 20px;
 }

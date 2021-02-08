@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import { UnitImages } from "../UnitImage";
+import './GeneralUnitImage.css'
 
 interface IGeneralUnitImage {
   name: string;
@@ -12,16 +13,14 @@ export const GeneralUnitImage = ({
   isDead,
   isDefending,
 }: IGeneralUnitImage): ReactElement => {
-  const unitNameForComponent: string = name.split(" ").join("");
-  const UnitImageComponent: React.FC =
-    UnitImages[`${unitNameForComponent}Image`];
+  const formattedUnitName: string = name.split(' ').join('');
+  const UnitImageComponent: React.FC = UnitImages[`${formattedUnitName}Image`];
+
   return (
     <div className="unit-image-container">
-      <UnitImageComponent />n
-      {isDefending && !isDead && (
-        <img alt="defence" src="../../assets/roleActions/defence.png" />
-      )}
-      {isDead && <img alt="dead" src="../../assets/roleActions/death.png" />}
+      <UnitImageComponent />
+      {isDefending && !isDead && <img alt="defending" src='/roleActions/hp.jpg' className="status" />}
+      {isDead && <img alt="dead" src='/roleActions/defence.png' className="status" />}
     </div>
   );
 };

@@ -1,19 +1,18 @@
-import { ReactElement } from "react";
+import React,  { ReactElement } from "react";
 import { IRoleAction } from "../../interfaces/IRoleAction";
-import { Attack } from "../../classes/actions/attack/Attack";
-import { Heal } from "../../classes/actions/health/Heal";
+import { Attacker } from "../../classes/actions/attack/Attacker";
+import { Healer } from "../../classes/actions/health/Healer";
 import { Paralyze } from "../../classes/actions/paralyze/Paralyze";
 
 interface IUnitDealValueProps {
-  heal: number;
-  damage: number;
+  dealValue:number;
   roleAction: IRoleAction;
 }
 
 const defineRoleForPicture = (roleType: IRoleAction): string => {
-  if (roleType instanceof Attack) {
+  if (roleType instanceof Attacker) {
     return "damage.png";
-  } else if (roleType instanceof Heal) {
+  } else if (roleType instanceof Healer) {
     return "heal.png";
   } else if (roleType instanceof Paralyze) {
     return "paralyze.png";
@@ -21,10 +20,8 @@ const defineRoleForPicture = (roleType: IRoleAction): string => {
   return "damage.png";
 };
 
-export const UnitDealValue = ({
-  heal,
-  damage,
-  roleAction,
+export const UnitDealValue = ({ dealValue,
+                                roleAction,
 }: IUnitDealValueProps): ReactElement => {
   return (
     <div>
@@ -32,8 +29,7 @@ export const UnitDealValue = ({
         alt="value"
         src={`../../assets/${defineRoleForPicture(roleAction)}`}
       />
-      <span>{heal}</span>
-      <span>{damage}</span>
+      <span>{dealValue}</span>
     </div>
   );
 };

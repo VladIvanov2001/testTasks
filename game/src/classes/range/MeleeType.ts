@@ -7,7 +7,7 @@ export class MeleeType implements IAttackRange {
     unitBoardLocation: boardLocation,
     gameBoardAction: GameBoardAction
   ): boardLocation[] {
-    const neighborEnemiesLocation = gameBoardAction.getEnemyNeighborLocation(
+    const neighborEnemiesLocation = gameBoardAction.getAdjacentEnemiesLocation(
       unitBoardLocation
     );
 
@@ -15,20 +15,17 @@ export class MeleeType implements IAttackRange {
       return neighborEnemiesLocation;
     }
 
-    const unitTeam: Team | null = gameBoardAction.getUnitTeam(
+    const unitTeam: Team | null = gameBoardAction.getTeamOfUnit(
       unitBoardLocation
     );
-    if (unitTeam === gameBoardAction.getNextLineTeam(unitBoardLocation)) {
+    if (unitTeam && unitTeam === gameBoardAction.getTeamOfNextLine(unitBoardLocation)) {
       return [];
     }
 
-    const nearestEnemiesLocation:
-      | boardLocation[]
-      | null = gameBoardAction.getNearestEnemyRow(unitBoardLocation);
-    if (nearestEnemiesLocation) {
-      return nearestEnemiesLocation;
+    const nearestRowEnemiesLocation: boardLocation[] | null = gameBoardAction.getNearestLineEnemiesLocation(unitBoardLocation);
+    if (nearestRowEnemiesLocation) {
+      return nearestRowEnemiesLocation;
     }
-
     return [];
   }
 }

@@ -32,16 +32,15 @@ export const SingleUnit = ({
       onClick={() => handleSelectTarget(unit)}
     >
       <GeneralUnitImage
-        name={unit.name}
+        name={unit.getName()}
         isDead={isDead}
         isDefending={isDefending}
       />
       <UnitInfo
-        name={unit.name}
-        hp={unit.hp}
-        damage={unit.damage}
-        heal={unit.heal}
-        roleAction={unit.roleAction}
+        name={unit.getName()}
+        hp={unit.getHP()}
+        dealValue={unit.getDealValue()}
+        roleAction={unit.getDealerType()}
       />
     </div>
   );

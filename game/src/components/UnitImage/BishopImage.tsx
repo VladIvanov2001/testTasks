@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 
 export const BishopImage = (): ReactElement => (
-  <img alt="bandit" src="../../assets/heroImages/bishop.png" />
+  <img alt="bandit" src="/heroImages/bishop.png" />
 );

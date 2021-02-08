@@ -17,7 +17,7 @@ export class Paralyze implements IRoleAction {
         enemyBoardLocation
       );
       if (enemyUnit) {
-        enemyUnit.initiative = 0; //if initiative is equal to 0 - unit skips turn
+        enemyUnit.setInitiative(0); //if initiative is equal to 0 - unit skips turn
         paralyzedUnits.push(enemyUnit);
       }
     });

@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 
 export const ArchimageImage = (): ReactElement => (
-  <img alt="archimage" src="../../assets/heroImages/archimage.png" />
+  <img alt="archimage" src="/heroImages/archimage.png" />
 );

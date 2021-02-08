@@ -1,23 +1,21 @@
 import { Unit } from "../Unit";
 import { MeleeType } from "../range/MeleeType";
 import { SingleTarget } from "../targets/SingleTarget";
-import { Attack } from "../actions/attack/Attack";
+import { Attacker } from "../actions/attack/Attacker";
 
 export class Skeleton extends Unit {
   constructor(
     name = "Skeleton",
     hp = 100,
-    damage = 25,
-    heal = 0,
+    dealValue = 25,
     initiative = 50
   ) {
     super(
       name,
       hp,
-      damage,
-      heal,
+      dealValue,
       initiative,
-      new Attack(),
+      new Attacker(),
       new MeleeType(),
       new SingleTarget()
     );

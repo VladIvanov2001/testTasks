@@ -1,6 +1,6 @@
 import { GameBoardAction } from "./GameBoardAction";
 import { GameBoard } from "./GameBoard";
-import { Queue } from "../Queue";
+import { Queue } from "../TurnGenerator";
 import { Unit } from "../Unit";
 import { boardLocation } from "../../types/types";
 import { unit, TypeOfAction } from "../../types/types";
@@ -9,117 +9,92 @@ import { SingleTarget } from "../targets/SingleTarget";
 
 //this class is responsible for actions which every unit can do
 export class UnitAction {
-  gameBoardAction: GameBoardAction;
-  gameBoard: GameBoard;
-  queueSwitcher: Queue;
+  private gameBoardAction: GameBoardAction;
+  private board: GameBoard;
+  private turnGenerator: Queue;
 
-  constructor(
-    actionWithBoard: GameBoardAction,
-    gameBoard: GameBoard,
-    switchQueue: Queue
-  ) {
-    this.gameBoardAction = actionWithBoard;
-    this.gameBoard = gameBoard;
-    this.queueSwitcher = switchQueue;
-  }
-
-  getTargetBoardLocation(unit: Unit): boardLocation | null {
-    return this.gameBoardAction.getUnitLocation(unit);
-  }
-
-  singleTargetAction(unit: Unit, enemyLocation: boardLocation): void {
-    const unitBoardLocation = this.gameBoardAction.getUnitLocation(unit);
-    if (unitBoardLocation) {
-      unit.action(unitBoardLocation, this.gameBoardAction, enemyLocation);
-    }
-  }
-
-  massTargetAction(unit: Unit): void {
-    const unitBoardLocation = this.gameBoardAction.getUnitLocation(unit);
-    unit.action(unitBoardLocation as boardLocation, this.gameBoardAction, null);
-  }
-
-  defenceAction(unit: Unit): void {
-    unit.defence = true;
-  }
-
-  possibleUnitTargets(unit: Unit): unit[] {
-    return unit
-      .getPossibleTargets(
-        this.gameBoardAction.getUnitLocation(unit) as boardLocation,
-        this.gameBoardAction
-      )
-      .map((location) => this.gameBoardAction.getUnitByLocation(location));
-  }
-
-  getBoardLocationOfTarget(unit: Unit): boardLocation | null {
-    return this.gameBoardAction.getUnitLocation(unit);
-  }
-
-  killUnit(boardLocation: boardLocation): void {
-    //all death units are null units
-    this.gameBoard.putUnitOnBoard(null, boardLocation);
-  }
-
-  checkDeadUnits(enemiesBoardLocation: boardLocation[]): void {
-    enemiesBoardLocation.forEach((enemy) => {
-      const unit = this.gameBoardAction.getUnitByLocation(enemy);
-      if (unit && unit.hp <= 0) {
-        this.killUnit(enemy);
-      }
-    });
-  }
-
-  action(
-    //check target behavior and does action depends on behavior
-    unit: Unit
-  ): void | ((targetEnemyBoardLocation: boardLocation) => void) {
-    const unitBoardLocation = this.gameBoardAction.getUnitLocation(unit);
-    if (unitBoardLocation) {
-      if (unit.targetBehavior instanceof MultiTarget) {
-        //unit action and after attack you should check alive units
-        this.massTargetAction(unit);
-        this.checkDeadUnits(
-          this.gameBoardAction.getAllEnemiesLocation(
-            this.gameBoardAction.getUnitLocation(unit) as boardLocation
-          )
-        );
-      } else if (unit.targetBehavior instanceof SingleTarget) {
-        return (enemyBoardLocation: boardLocation) => {
-          this.singleTargetAction(unit, enemyBoardLocation);
-          this.checkDeadUnits(
-            this.gameBoardAction.getAllEnemiesLocation(
-              this.gameBoardAction.getUnitLocation(unit) as boardLocation
-            )
-          );
-        };
-      } else throw new Error("there is no this target behavior");
-    } else throw new Error("there is no necessary unit");
+  constructor(gameBoardAction: GameBoardAction, board: GameBoard, turnGenerator: Queue) {
+    this.gameBoardAction = gameBoardAction;
+    this.board = board;
+    this.turnGenerator = turnGenerator;
   }
 
   doAction(
     action: TypeOfAction,
     unit: Unit,
-    targetLocation?: boardLocation
+    targetBoardLocation?: boardLocation,
   ): void | ((targetEnemyBoardLocation: boardLocation) => void) {
-    const actionType = this.action(unit);
+    const dealAction = this.deal(unit);
     switch (action) {
-      case TypeOfAction.action:
-        if (
-          unit.targetBehavior instanceof SingleTarget && //if unit has single target behavior you should pass target location
-          targetLocation &&
-          actionType
-        ) {
-          actionType(targetLocation);
+      case TypeOfAction.Action:
+        if (!(unit.getCountTarget() instanceof MultiTarget) && dealAction && targetBoardLocation) {
+          dealAction(targetBoardLocation);
         }
-        this.queueSwitcher.next();
+        this.turnGenerator.next();
         break;
-      case TypeOfAction.defence:
-        this.defenceAction(unit);
-        this.queueSwitcher.next();
+      case TypeOfAction.Defence:
+        this.defense(unit);
+        this.turnGenerator.next();
         break;
       default:
-        throw new Error("Error with action");
+        throw new Error('There is no such an action');
     }
+  }
+
+  private killUnit(boardLocation: boardLocation): void {
+    this.board.setUnit(boardLocation, null);
+  }
+
+  private checkAndRemoveDeadUnits(enemiesBoardLocations: boardLocation[]): void {
+    enemiesBoardLocations.forEach((e) => {
+      const enemyUnit: unit = this.gameBoardAction.getUnitByLocation(e);
+      if (enemyUnit && enemyUnit.getHP() <= 0) {
+        this.killUnit(e);
+      }
+    });
+  }
+
+  private dealSingleTarget(unit: Unit, targetEnemyBoardLocation: boardLocation): void {
+    const unitBoardLocation = this.gameBoardAction.getUnitBoardLocation(unit);
+    if (unitBoardLocation) {
+      unit.action(unitBoardLocation, this.gameBoardAction, targetEnemyBoardLocation);
+    }
+  }
+
+  private dealAllTargets(unit: Unit) {
+    const unitBoardLocation = this.gameBoardAction.getUnitBoardLocation(unit);
+    unit.action(unitBoardLocation as boardLocation, this.gameBoardAction);
+  }
+
+  private deal(unit: Unit): void | ((targetEnemyBoardLocation: boardLocation) => void) {
+    const unitBoardLocation = this.gameBoardAction.getUnitBoardLocation(unit);
+
+    if (unitBoardLocation && unit.getCountTarget() instanceof SingleTarget) {
+      return (targetEnemyBoardLocation: boardLocation) => {
+        this.dealSingleTarget(unit, targetEnemyBoardLocation);
+        this.checkAndRemoveDeadUnits(
+          this.gameBoardAction.getAllEnemiesLocation(this.gameBoardAction.getUnitBoardLocation(unit) as boardLocation),
+        );
+      };
+    } else if (unitBoardLocation && unit.getCountTarget() instanceof MultiTarget) {
+      this.dealAllTargets(unit);
+      this.checkAndRemoveDeadUnits(
+        this.gameBoardAction.getAllEnemiesLocation(this.gameBoardAction.getUnitBoardLocation(unit) as boardLocation),
+      );
+    }
+  }
+
+  private defense(unit: Unit): void {
+    unit.setIsDefending(true);
+  }
+
+  getPossibleTargetsOfUnit(unit: Unit): unit[] {
+    return unit
+      .getPossibleTargets(this.gameBoardAction.getUnitBoardLocation(unit) as boardLocation, this.gameBoardAction)
+      .map((loc) => this.gameBoardAction.getUnitByLocation(loc));
+  }
+
+  getBoardLocationOfTarget(unit: Unit): boardLocation | null {
+    return this.gameBoardAction.getUnitBoardLocation(unit);
   }
 }

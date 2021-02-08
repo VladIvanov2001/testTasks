@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { UnitDealValue } from "../UnitDealValue/UnitDealValue";
 import { UnitHP } from "../UnitHP/UnitHP";
 import { IRoleAction } from "../../interfaces/IRoleAction";
@@ -6,8 +6,7 @@ import { IRoleAction } from "../../interfaces/IRoleAction";
 interface IUnitInfoProps {
   hp: number;
   name: string;
-  damage: number;
-  heal: number;
+  dealValue: number;
   roleAction: IRoleAction;
 }
 
@@ -15,12 +14,11 @@ export const UnitInfo = ({
   hp,
   name,
   roleAction,
-  damage,
-  heal,
+  dealValue
 }: IUnitInfoProps): ReactElement => {
   return (
     <div>
-      <UnitDealValue damage={damage} heal={heal} roleAction={roleAction} />
+      <UnitDealValue dealValue={dealValue} roleAction={roleAction} />
       <span>{name}</span>
       <UnitHP hp={hp} />
     </div>

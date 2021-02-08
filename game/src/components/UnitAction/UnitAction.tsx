@@ -1,5 +1,5 @@
 //this component is used for action choice: type of action or defence
-import { Dispatch, ReactElement, SetStateAction } from "react";
+import React,  { Dispatch, ReactElement, SetStateAction } from "react";
 
 interface IUnitAction {
   toSelectTarget: boolean;

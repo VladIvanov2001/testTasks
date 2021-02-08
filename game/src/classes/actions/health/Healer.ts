@@ -4,7 +4,7 @@ import { boardLocation } from "../../../types/types";
 import { GameBoardAction } from "../../board/GameBoardAction";
 import { unit } from "../../../types/types";
 
-export class Heal implements IRoleAction {
+export class Healer implements IRoleAction {
   //class for units who can heal
   action(
     unit: Unit,
@@ -18,12 +18,12 @@ export class Heal implements IRoleAction {
       );
       if (unitForHeal) {
         let hpAfterHeal = 0;
-        if (unitForHeal.hp + unit.heal > unitForHeal.maxHP) {
-          hpAfterHeal = unitForHeal.maxHP;
+        if (unitForHeal.getHP() + unit.getHP() > unitForHeal.getMaxHp()) {
+          hpAfterHeal = unitForHeal.getMaxHp();
         } else {
-          hpAfterHeal = unitForHeal.hp + unit.heal;
+          hpAfterHeal = unitForHeal.getHP() + unit.getDealValue();
         }
-        unitForHeal.hp = hpAfterHeal;
+        unitForHeal.setHp(hpAfterHeal);
         unitsForHeal.push(unitForHeal);
       }
     });

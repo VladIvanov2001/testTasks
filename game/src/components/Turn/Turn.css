@@ -9,9 +9,16 @@
 .turn-item {
     width: 80px;
     height: 100px;
+    position: relative;
 }
 
 .turn-item:first-of-type {
     width: 100px;
     height: 120px;
+}
+
+.turn-item span{
+    color: #fff;
+    z-index: 10;
+    position: absolute;
 }

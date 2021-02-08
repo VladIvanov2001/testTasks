@@ -31,7 +31,7 @@ export const Turn = ({currentUnit, unitOrder}:ITurnProps):ReactElement =>{
         return(
         <div className="turn-item" key={idx}>
          <GeneralUnitImage name={unit.getName()} />
-         <span>{Math.floor(unit.getHP() / unit.getMaxHp()) * 100}%</span>
+         <span>{Math.floor(unit.getHP() * 100 / unit.getMaxHp())}%</span>
         </div>
         )
       })}

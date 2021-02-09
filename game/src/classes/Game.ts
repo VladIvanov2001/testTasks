@@ -11,7 +11,7 @@ type initialGameData = {
   queueSwitcher: Queue;
   unitAction: UnitAction;
 };
-
+//this class is responsible for init game and start new game after end of previous
 export class Game {
   static gameBoardAction: GameBoardAction;
   static queueSwitcher: Queue;

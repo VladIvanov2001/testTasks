@@ -13,8 +13,8 @@ export class MeleeType implements IAttackRange {
       return adjacentEnemiesLocation;
     }
 
-    const unitTeam: Team | null = gameBoardAction.getTeamOfUnit(unitBoardLocation);
-    if (unitTeam && unitTeam === gameBoardAction.getTeamOfNextLine(unitBoardLocation)) {
+    const unitTeam: Team = gameBoardAction.getTeamOfUnit(unitBoardLocation);
+    if (unitTeam === gameBoardAction.getTeamOfNextLine(unitBoardLocation)) {
       return [];
     }
 

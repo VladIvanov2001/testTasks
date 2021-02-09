@@ -1,7 +1,6 @@
 import { Unit } from "./Unit";
 import { PossibleUnit } from "../types/types";
 import { Randomizer } from "./Randomizer";
-//this class describes move l
 export class Queue {
   queueList: Unit[];
   currentUnit: Unit;
@@ -32,7 +31,7 @@ export class Queue {
   }
 
   getUnitOrder(): Unit[] {
-    return this.queueList.filter((u) => this.isUnitCanAct(u));
+    return this.queueList.filter((unit) => this.isUnitCanAct(unit));
   }
 
   sortByInitiative(units: Unit[][]) {

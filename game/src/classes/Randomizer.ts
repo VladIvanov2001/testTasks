@@ -35,7 +35,7 @@ export class Randomizer {
     return unitsList;
   }
 
-  generateIndex(): number {
+  generateIndex(): number { //index for mix units order
     return Math.floor(Math.random() * this.unitList.length);
   }
 

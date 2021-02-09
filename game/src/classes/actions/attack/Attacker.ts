@@ -15,7 +15,7 @@ export class Attacker implements IRoleAction {
       const enemyUnit:PossibleUnit = gameBoardAction.getUnitByLocation(enemyBoardLocation);
       if (enemyUnit) {
         const restHp = enemyUnit.getDefence()
-          ? enemyUnit.getHP() - 0.5 * unit.getDealValue()
+          ? enemyUnit.getHP() - 0.5 * unit.getDealValue()//if unit in defence, incoming damage increase on 50%
           : enemyUnit.getHP() - unit.getDealValue();
         enemyUnit.setHp(restHp);
         damagedUnits.push(enemyUnit);

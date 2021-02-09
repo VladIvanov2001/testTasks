@@ -20,7 +20,7 @@ export const Turn = ({currentUnit, unitOrder}:ITurnProps):ReactElement =>{
         ...[
           ...unitOrder.slice(currentUnitIndex + 1),
           ...unitOrder.slice(0, currentUnitIndex),//circle move
-        ].slice(0, COUNT_UNIT_FOR_TURN+1),
+        ].slice(0, COUNT_UNIT_FOR_TURN),
       ]);
     }
   }, [currentUnit]);

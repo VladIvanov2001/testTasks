@@ -2,7 +2,7 @@ import { GameBoard } from './GameBoard';
 import { Unit } from "../Unit";
 import { BoardLocation, Team, PossibleUnit, PossibleBoardLocation } from '../../types/types';
 
-//this class is responsible for action with boards.
+//this class is a heap methods for action with boards.
 export class GameBoardAction {
   private gameBoard: GameBoard;
 
@@ -48,17 +48,17 @@ export class GameBoardAction {
     return Boolean(this.gameBoard.getBoardMatrix()[boardLocation.rowNumber][boardLocation.columnNumber]);
   }
 
-  removeDeadUnits<TValue>(value: TValue | null): value is TValue {
+  removeDeadUnits<TValue>(value: TValue | null): value is TValue { //for callback in filter after each move; is - predication that value will be TValue type
     return value !== null;
   }
 
   getTeamOfUnit(unitBoardLocation: BoardLocation): Team {
-    return unitBoardLocation.rowNumber < Math.floor(this.gameBoard.getBoardMatrix().length / 2)
+    return unitBoardLocation.rowNumber < Math.floor(this.gameBoard.getBoardMatrix().length / 2) //there are odd number of fields
       ? Team.RedTeam
       : Team.OrangeTeam;
   }
 
-  getAdjacentEnemiesLocation(unitBoardLocation: BoardLocation): BoardLocation[] {
+  getAdjacentEnemiesLocation(unitBoardLocation: BoardLocation): BoardLocation[] { // this method is responsible for seacrhing targets for melee attackers
     const team = this.getTeamOfUnit(unitBoardLocation);
     const valueChange: number = team === Team.RedTeam ? 1 : -1;
 
@@ -158,7 +158,7 @@ export class GameBoardAction {
     return team === Team.OrangeTeam ? Team.RedTeam : Team.OrangeTeam;
   }
 
-  private getAllTeamUnits(unitBoardLocation: BoardLocation, allies = false): BoardLocation[] {
+  private getAllTeamUnits(unitBoardLocation: BoardLocation, allies = false): BoardLocation[] { //general method for enemies and allies on board, all depends on second param(allies)
     const matrix = this.gameBoard.getBoardMatrix();
     const teamOfUnit: Team = this.getTeamOfUnit(unitBoardLocation);
     const consideringTeam = allies ? this.switchTeam(teamOfUnit) : teamOfUnit;

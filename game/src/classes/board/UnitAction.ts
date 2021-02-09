@@ -45,19 +45,12 @@ export class UnitAction {
     this.board.setUnit(boardLocation, null);
   }
 
-  private checkAndRemoveDeadUnits(enemiesBoardLocations: BoardLocation[]): void {
+  private checkAndRemoveDeadUnits(enemiesBoardLocations: BoardLocation[]): void { // after each move we should check dead units and give them null
     enemiesBoardLocations.forEach((enemy) => {
       const enemyUnit: PossibleUnit = this.gameBoardAction.getUnitByLocation(enemy);
       if (enemyUnit && enemyUnit.getHP() <= 0) {
         this.killUnit(enemy);
       }
-
-      if(enemyUnit){
-        if(enemyUnit.getHP()<=0){
-          this.killUnit(enemy)
-        }
-      }
-      else throw new Error('sorry')
     });
   }
 
@@ -68,27 +61,29 @@ export class UnitAction {
     }
   }
 
-  private dealAllTargets(unit: Unit) {
+  private dealAllTargets(unit: Unit) { //this method is responsible for mass attack
     const unitBoardLocation = this.gameBoardAction.getUnitBoardLocation(unit);
     unit.action(unitBoardLocation as BoardLocation, this.gameBoardAction);
   }
 
-  private deal(unit: Unit): void | ((targetEnemyBoardLocation: BoardLocation) => void) {
+  private deal(unit: Unit): void | ((targetEnemyBoardLocation: BoardLocation) => void) { // this method is responsible for unit action
     const unitBoardLocation = this.gameBoardAction.getUnitBoardLocation(unit);
 
-    if (unitBoardLocation && unit.getCountTarget() instanceof SingleTarget) {
-      return (targetEnemyBoardLocation: BoardLocation) => {
-        this.dealSingleTarget(unit, targetEnemyBoardLocation);
+    if(unitBoardLocation) {
+      if (unit.getCountTarget() instanceof SingleTarget) {
+        return (targetEnemyBoardLocation: BoardLocation) => {
+          this.dealSingleTarget(unit, targetEnemyBoardLocation);
+          this.checkAndRemoveDeadUnits(
+            this.gameBoardAction.getAllEnemiesLocation(this.gameBoardAction.getUnitBoardLocation(unit) as BoardLocation),
+          );
+        };
+      } else if (unit.getCountTarget() instanceof MultiTarget) {
+        this.dealAllTargets(unit);
         this.checkAndRemoveDeadUnits(
           this.gameBoardAction.getAllEnemiesLocation(this.gameBoardAction.getUnitBoardLocation(unit) as BoardLocation),
         );
-      };
-    } else if (unitBoardLocation && unit.getCountTarget() instanceof MultiTarget) {
-      this.dealAllTargets(unit);
-      this.checkAndRemoveDeadUnits(
-        this.gameBoardAction.getAllEnemiesLocation(this.gameBoardAction.getUnitBoardLocation(unit) as BoardLocation),
-      );
-    }
+      }
+    } else throw new Error('there is no any units for dealing');
   }
 
   private defense(unit: Unit): void {

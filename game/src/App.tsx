@@ -15,6 +15,8 @@ import { InfoPanel } from "./components/InfoPanel/InfoPanel";
 import { GameField } from "./components/GameField/GameField";
 import {ROWS, COLUMNS } from './constants/constants';
 
+import './App.css';
+
 let initialUnits: PossibleUnit[][] | null = null;
 
 function App(): ReactElement {

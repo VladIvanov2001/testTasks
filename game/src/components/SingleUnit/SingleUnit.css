@@ -6,8 +6,13 @@
     overflow: hidden;
 }
 
+.unit-item:hover{
+    cursor: pointer;
+    border: 4px solid #fff000;
+}
+
 .unit-item.current {
-    border: 7px solid #add8ef;
+    border: 7px solid #ff0000;
 }
 
 .unit-item.target {

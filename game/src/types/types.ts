@@ -1,6 +1,7 @@
 import { Unit } from "../classes/Unit";
 import { Queue } from "../classes/Queue";
 import { UnitAction } from "../classes/board/UnitAction";
+import { SET_IS_HOVER } from '../redux/actions/action';
 
 export type BoardLocation = {
   columnNumber: number;
@@ -25,4 +26,9 @@ export type QueueSwitcher = InstanceType<typeof Queue>;
 export enum TypeOfAction {
   Action = "ACTION",
   Defence = "DEFENCE",
+}
+
+export interface IsActiveHover {
+  type: typeof SET_IS_HOVER;
+  isHover: boolean
 }

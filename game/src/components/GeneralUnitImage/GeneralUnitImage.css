@@ -4,6 +4,10 @@
     position: relative;
 }
 
+.unit-image-container.hover{
+    border: 10px solid #000;
+}
+
 .unit-image-container>img{
     width: 220px;
     height: 220px;

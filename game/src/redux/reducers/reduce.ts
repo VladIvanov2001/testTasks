@@ -10,7 +10,7 @@ export const isHover = (state = initialHoverState, action:IsActiveHover) =>{
       case 'SET_IS_HOVER':{
         return {
           ...state,
-          payload:action.isHover,
+          payload:action.payload.isHover,
         };
       }
       default:

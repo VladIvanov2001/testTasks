@@ -28,7 +28,11 @@ export enum TypeOfAction {
   Defence = "DEFENCE",
 }
 
-export interface IsActiveHover {
-  type: typeof SET_IS_HOVER;
-  isHover: boolean
+export type IsActiveHoverAction = {
+  isHover: any;
+}
+
+export type IsActiveHover = {
+  type: string,
+  payload : { isHover:boolean } ,
 }

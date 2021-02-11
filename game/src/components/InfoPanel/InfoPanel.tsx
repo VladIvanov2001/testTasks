@@ -13,6 +13,7 @@ interface IInfoPanelProps {
   currentUnit: Unit;
   handleDefense: () => void;
   handleAction: () => void;
+  handleHoverOnImage: () => void;
 }
 
 export const InfoPanel = ({
@@ -22,6 +23,7 @@ export const InfoPanel = ({
                           queueSwitcher,
                           handleDefense,
                           handleAction,
+                          handleHoverOnImage,
                         }: IInfoPanelProps): ReactElement | null => {
   if (!currentUnit) {
     return null;
@@ -32,6 +34,7 @@ export const InfoPanel = ({
     <Turn
       currentUnit={currentUnit}
   unitOrder={queueSwitcher.getUnitOrder().filter((u) => u)}
+      handleHoverOnImage={handleHoverOnImage}
   />
   <UnitAction
   toSelectTarget={toSelectTarget}

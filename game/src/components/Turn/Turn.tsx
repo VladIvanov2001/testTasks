@@ -7,9 +7,10 @@ import './Turn.css';
 interface ITurnProps{
   currentUnit: Unit;
   unitOrder: Unit[];
+  handleHoverOnImage: () => void;
 }
 
-export const Turn = ({currentUnit, unitOrder}:ITurnProps):ReactElement =>{
+export const Turn = ({currentUnit, unitOrder, handleHoverOnImage}:ITurnProps):ReactElement =>{
   const [currentUnitOrder, setCurrentUnitOrder] = useState<Unit[]>(unitOrder);
 
   useEffect(()=>{
@@ -29,12 +30,13 @@ export const Turn = ({currentUnit, unitOrder}:ITurnProps):ReactElement =>{
     <div className="turn">
       {currentUnitOrder.map((unit, idx)=>{
         return(
-        <div className="turn-item" key={idx}>
-         <GeneralUnitImage name={unit.getName()} />
+        <div className="turn-item" onClick={handleHoverOnImage} key={idx}>
+          <div className="hp"></div>
+         <GeneralUnitImage currentUnit={unit} name={unit.getName()} />
          <span>{Math.floor(unit.getHP() * 100 / unit.getMaxHp())}%</span>
         </div>
         )
       })}
     </div>
   );
-};
+}

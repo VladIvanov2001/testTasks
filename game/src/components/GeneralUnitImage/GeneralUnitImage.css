@@ -3,8 +3,7 @@
     height: 100%;
     position: relative;
 }
-
-.unit-image-container.hover{
+.hover{
     border: 10px solid #000;
 }
 

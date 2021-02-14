@@ -30,7 +30,6 @@ export const GeneralUnitImage = ({
       "unit-image-container": true,
       hover: isHover.payload === currentUnit.getUnitID(),
     })} onMouseEnter={() => {
-      console.log(currentUnit);
       dispatch(setHoverIsTrue(currentUnit.getUnitID()))
     }}
          onMouseLeave={() => {
@@ -40,6 +39,7 @@ export const GeneralUnitImage = ({
       <UnitImageComponent />
       {isDefending && !isDead && <img alt="defending" src='/roleActions/defence.png' className="status" />}
       {isDead && <img alt="dead" src='/roleActions/death.png' className="status" />}
+      <div className="hp" style={{height: `${Math.round(100 - 100 * (currentUnit.getHP() / currentUnit.getMaxHp()))}%`}}>`{Math.round( 100 * (currentUnit.getHP() / currentUnit.getMaxHp()))}%`</div>
     </div>
   );
 };

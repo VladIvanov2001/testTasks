@@ -28,3 +28,12 @@
     width: 100px;
     height: 100px;
 }
+
+.hp{
+    top: 0;
+    z-index: 5;
+    opacity: 0.5;
+    position: absolute;
+    width: inherit;
+    background: #ff0000;
+}

@@ -18,6 +18,7 @@ export class Unit {
   private targetBehavior: ICountTarget;
   private defence: boolean;
   private originInitiative: number;
+  private unitID: number;
 
   constructor(
     name?: string,
@@ -38,6 +39,7 @@ export class Unit {
     this.defence = false;
     this.targetBehavior = targetBehavior || new SingleTarget();
     this.originInitiative = initiative || 0;
+    this.unitID = 0;
   }
 
   getPossibleTargets(
@@ -90,6 +92,10 @@ export class Unit {
     return this.initiative;
   }
 
+  getUnitID(): number {
+    return this.unitID
+  }
+
   getOriginInitiative(): number {
     return this.originInitiative;
   }
@@ -116,5 +122,9 @@ export class Unit {
 
   setIsDefending(value: boolean): void {
     this.defence = value;
+  }
+
+  setUnitID(value: number): void{
+    this.unitID = value;
   }
 }

@@ -45,6 +45,7 @@ export class Randomizer {
 
   generateGameBoard(rowsCount: number, columnsCount: number): Unit[][] {
     const matrix: Unit[][] = [];
+    console.log(this.unitList);
     for (let i = 0; i < rowsCount; i += 1) {
       const row: Unit[] = [];
       for (let j = 0; j < columnsCount; j += 1) {

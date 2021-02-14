@@ -47,6 +47,7 @@ export class Queue {
 
     let tempArr = [];
     for (let i = sortedUnitList.length - 1; i >= 0; i -= 1) {
+      sortedUnitList[i].setUnitID(i);
       if (
         i !== sortedUnitList.length - 1 &&
         sortedUnitList[i].getInitiative() !== sortedUnitList[i + 1].getInitiative()
@@ -58,8 +59,8 @@ export class Queue {
       if (i === 0) {
         splitedByEqualInitiativeArrays.push(tempArr);
       }
-    }
 
+    }
     return splitedByEqualInitiativeArrays;
   }
 

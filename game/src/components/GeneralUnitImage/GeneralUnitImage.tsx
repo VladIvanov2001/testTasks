@@ -1,47 +1,42 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { UnitImages } from "../UnitImage";
 import './GeneralUnitImage.css'
-import { useDispatch, useSelector } from 'react-redux';
-import { setHoverIsTrue } from '../../redux/actions/action';
+import { Unit } from '../../classes/Unit';
+import { IsActiveHoverAction } from '../../types/types';
 import cn from 'classnames';
-import { IsActiveHover, IsActiveHoverAction } from "../../types/types";
-import { Unit } from "../../classes/Unit";
+import { setHoverIsTrue } from '../../redux/actions/action';
 
 interface IGeneralUnitImageProps {
   name: string;
   isDead?: boolean;
   isDefending?: boolean;
-  currentUnit?: Unit;
+  currentUnit: Unit;
 }
 
 export const GeneralUnitImage = ({
-  name,
-  isDead,
-  isDefending,
-  currentUnit
-}: IGeneralUnitImageProps): ReactElement => {
-
-
-
-  const showCurrentUser = () =>{
-
-  }
-
+                                   name,
+                                   isDead,
+                                   isDefending,
+                                   currentUnit
+                                 }: IGeneralUnitImageProps): ReactElement => {
   const formattedUnitName: string = name.split(' ').join('');
   const UnitImageComponent: React.FC = UnitImages[`${formattedUnitName}Image`];
   const dispatch = useDispatch();
   const isHover = useSelector((state: IsActiveHoverAction) => state.isHover);
+
   return (
     <div className={cn({
       "unit-image-container": true,
-      hover: isHover.payload
+      hover: isHover.payload === currentUnit.getUnitID(),
     })} onMouseEnter={() => {
-      dispatch(setHoverIsTrue(true))
-    }
-    } onMouseLeave={() => {
-      dispatch(setHoverIsTrue(false))
-    }
-    }>
+      console.log(currentUnit);
+      dispatch(setHoverIsTrue(currentUnit.getUnitID()))
+    }}
+         onMouseLeave={() => {
+           dispatch(setHoverIsTrue(-1))
+         }
+         }>
       <UnitImageComponent />
       {isDefending && !isDead && <img alt="defending" src='/roleActions/defence.png' className="status" />}
       {isDead && <img alt="dead" src='/roleActions/death.png' className="status" />}

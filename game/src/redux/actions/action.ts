@@ -1,8 +1,6 @@
-import { IsActiveHover } from "../../types/types";
-
 export const SET_IS_HOVER = 'SET_IS_HOVER';
 
-export const setHoverIsTrue = (isHover:boolean) => ({
+export const setHoverIsTrue = (unitID:number) => ({
   type: SET_IS_HOVER,
-  payload: { isHover: isHover },
+  payload: unitID,
 });

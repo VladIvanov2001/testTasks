@@ -13,35 +13,32 @@ interface IInfoPanelProps {
   currentUnit: Unit;
   handleDefense: () => void;
   handleAction: () => void;
-  handleHoverOnImage: () => void;
 }
 
 export const InfoPanel = ({
-                          toSelectTarget,
-                          setToSelectTarget,
-                          currentUnit,
-                          queueSwitcher,
-                          handleDefense,
-                          handleAction,
-                          handleHoverOnImage,
-                        }: IInfoPanelProps): ReactElement | null => {
+                            toSelectTarget,
+                            setToSelectTarget,
+                            currentUnit,
+                            queueSwitcher,
+                            handleDefense,
+                            handleAction,
+                          }: IInfoPanelProps): ReactElement | null => {
   if (!currentUnit) {
     return null;
-}
+  }
 
   return (
     <div className="info-panel">
-    <Turn
-      currentUnit={currentUnit}
-  unitOrder={queueSwitcher.getUnitOrder().filter((u) => u)}
-      handleHoverOnImage={handleHoverOnImage}
-  />
-  <UnitAction
-  toSelectTarget={toSelectTarget}
-  setToSelectTarget={setToSelectTarget}
-  handleDefense={handleDefense}
-  handleAction={handleAction}
-  />
-  </div>
-);
+      <Turn
+        currentUnit={currentUnit}
+        unitOrder={queueSwitcher.getUnitOrder().filter((u) => u)}
+      />
+      <UnitAction
+        toSelectTarget={toSelectTarget}
+        setToSelectTarget={setToSelectTarget}
+        handleDefense={handleDefense}
+        handleAction={handleAction}
+      />
+    </div>
+  );
 };

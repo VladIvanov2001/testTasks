@@ -27,6 +27,7 @@ export class UnitAction {
     const dealAction = this.deal(unit);
     switch (action) {
       case TypeOfAction.Action:
+        console.log('actioooon');
         if (!(unit.getCountTarget() instanceof MultiTarget) && dealAction && targetBoardLocation) {
           dealAction(targetBoardLocation);
         }

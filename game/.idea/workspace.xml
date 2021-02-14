@@ -2,17 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72256685-61f2-4d03-884e-218335512447" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/classes/actions/defence/DefencePerformance.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/IDefence.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/testTasks.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/Queue.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Queue.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/Randomizer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Randomizer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/Unit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Unit.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/models/Archimage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/models/Archimage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/models/Bandit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/models/Bandit.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/models/Bishop.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/models/Bishop.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/models/Centaur.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/models/Centaur.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/models/ElfArcher.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/models/ElfArcher.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/board/UnitAction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/board/UnitAction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GameField/GameField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GameField/GameField.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GeneralUnitImage/GeneralUnitImage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GeneralUnitImage/GeneralUnitImage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GeneralUnitImage/GeneralUnitImage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GeneralUnitImage/GeneralUnitImage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/InfoPanel/InfoPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/InfoPanel/InfoPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SingleUnit/SingleUnit.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SingleUnit/SingleUnit.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SingleUnit/SingleUnit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SingleUnit/SingleUnit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Turn/Turn.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Turn/Turn.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Turn/Turn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Turn/Turn.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/actions/action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions/action.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducers/reduce.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/reduce.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +39,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -39,6 +58,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -46,17 +67,21 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.jsOptions" />
     <property name="ts.external.directory.path" value="C:\GH\testTasks\game\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\GH\testTasks\game" />
+      <recent name="C:\GH\testTasks\game\src\assets\roleActions" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\GH\testTasks\game\src\classes\actions" />
-      <recent name="C:\GH\testTasks\game\src\interfaces" />
-      <recent name="C:\GH\testTasks\game\src\classes" />
-      <recent name="C:\GH\testTasks\game\src\classes\models" />
-      <recent name="C:\GH\testTasks\game\src\interfaces\roleActions\Attack" />
+      <recent name="C:\GH\testTasks\game\public" />
+      <recent name="C:\GH\testTasks\game\src\components" />
+      <recent name="C:\GH\testTasks\game\src\assets\roleActions" />
+      <recent name="C:\GH\testTasks\game\src\classes\board" />
+      <recent name="C:\GH\testTasks\game\src\components\GameField" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -67,7 +92,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611647342909</updated>
-      <workItem from="1611647347387" duration="19621000" />
+      <workItem from="1611647347387" duration="57037000" />
+      <workItem from="1612081220679" duration="30615000" />
+      <workItem from="1612130090499" duration="134054000" />
+      <workItem from="1612732984513" duration="8540000" />
+      <workItem from="1612816109681" duration="12237000" />
+      <workItem from="1612985456351" duration="16757000" />
+      <workItem from="1613194871784" duration="23892000" />
     </task>
     <servers />
   </component>

@@ -2,7 +2,7 @@ import { SET_IS_HOVER } from '../actions/action';
 import { IsActiveHover } from '../../types/types';
 
 export const initialHoverState = {
-  isHover: false
+  unitID: null
 }
 
 export const isHover = (state = initialHoverState, action:IsActiveHover) =>{
@@ -10,7 +10,7 @@ export const isHover = (state = initialHoverState, action:IsActiveHover) =>{
       case 'SET_IS_HOVER':{
         return {
           ...state,
-          payload:action.payload.isHover,
+          payload:action.payload,
         };
       }
       default:

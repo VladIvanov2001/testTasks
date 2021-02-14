@@ -14,13 +14,13 @@ interface IBoardProps {
 }
 
 export const GameField = ({
-                        initialUnits,
-                        units,
-                        currentUnit,
-                        toSelectTarget,
-                        unitAction,
-                        handleSelectTarget,
-                      }: IBoardProps): ReactElement => {
+                            initialUnits,
+                            units,
+                            currentUnit,
+                            toSelectTarget,
+                            unitAction,
+                            handleSelectTarget,
+                          }: IBoardProps): ReactElement => {
   const [possibleTargets, setPossibleTargets] = useState<PossibleUnit[]>();
 
   useEffect(() => {
@@ -41,6 +41,7 @@ export const GameField = ({
                 isDead={Boolean(!units[rowIndex][columnIndex])}
                 isDefending={Boolean(unit.getDefence())}
                 isCurrent={unit === currentUnit}
+                currentUnit={unit}
                 isTarget={
                   toSelectTarget && possibleTargets?.findIndex((unit) => unit === units[rowIndex][columnIndex]) !== -1
                 }

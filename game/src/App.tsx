@@ -14,8 +14,7 @@ import { MultiTarget } from "./classes/targets/MultiTarget";
 import { InfoPanel } from "./components/InfoPanel/InfoPanel";
 import { GameField } from "./components/GameField/GameField";
 import {ROWS, COLUMNS } from './constants/constants';
-
-import './App.css';
+import './App.css'
 
 let initialUnits: PossibleUnit[][] | null = null;
 
@@ -25,7 +24,6 @@ function App(): ReactElement {
   const [unitAction, setUnitAction] = useState<UnitActionType>();
   const [toSelectTarget, setToSelectTarget] = useState<boolean>(false);
   const [currentUnit, setCurrentUnit] = useState<Unit>();
-  const [hoverUnit, setHoverUnit] = useState<Unit>();
   const [turnsCount, setTurnsCount] = useState<number>(1);
   const [finish, setFinish] = useState<{ isFinished: boolean; currentTeam: Team }>();
   const [toStartNewGame, setToStartNewGame] = useState<boolean>(false);
@@ -33,10 +31,6 @@ function App(): ReactElement {
   function handleNewGame(): void {
     setToStartNewGame(!toStartNewGame);
     setFinish(Game.finish(currentUnit as Unit));
-  }
-
-  function handleHoverOnImage(unit: Unit): void{
-    setHoverUnit(unit);
   }
 
   function handleSelectTarget(unit: Unit): void {
@@ -101,7 +95,6 @@ function App(): ReactElement {
             handleSelectTarget={handleSelectTarget}
             currentUnit={currentUnit as Unit}
             unitAction={unitAction as UnitActionType}
-            // handleHoverOnImage={handleHoverOnImage}
           />
           <InfoPanel
             queueSwitcher={queueSwitcher as QueueSwitcher}
@@ -110,7 +103,6 @@ function App(): ReactElement {
             currentUnit={currentUnit as Unit}
             handleDefense={handleDefense}
             handleAction={handleAction}
-            handleHoverOnImage={handleHoverOnImage}
           />
         </>
       )}

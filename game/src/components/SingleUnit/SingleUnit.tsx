@@ -14,16 +14,18 @@ interface ISingleUnit {
   isCurrent: boolean;
   isTarget: boolean;
   handleSelectTarget: (arg: Unit) => void;
+  currentUnit: Unit;
 }
 
 export const SingleUnit = ({
-  unit,
-  isDead,
-  isDefending,
-  isCurrent,
-  isTarget,
-  handleSelectTarget,
-}: ISingleUnit): ReactElement => {
+                             unit,
+                             isDead,
+                             isDefending,
+                             isCurrent,
+                             isTarget,
+                             handleSelectTarget,
+                             currentUnit
+                           }: ISingleUnit): ReactElement => {
   return (
     <div
       className={cn({
@@ -37,6 +39,7 @@ export const SingleUnit = ({
         name={unit.getName()}
         isDead={isDead}
         isDefending={isDefending}
+        currentUnit={currentUnit}
       />
       <UnitInfo
         name={unit.getName()}

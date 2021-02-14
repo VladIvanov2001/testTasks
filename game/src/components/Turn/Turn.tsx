@@ -7,10 +7,9 @@ import './Turn.css';
 interface ITurnProps{
   currentUnit: Unit;
   unitOrder: Unit[];
-  handleHoverOnImage: () => void;
 }
 
-export const Turn = ({currentUnit, unitOrder, handleHoverOnImage}:ITurnProps):ReactElement =>{
+export const Turn = ({currentUnit, unitOrder}:ITurnProps):ReactElement =>{
   const [currentUnitOrder, setCurrentUnitOrder] = useState<Unit[]>(unitOrder);
 
   useEffect(()=>{
@@ -21,7 +20,7 @@ export const Turn = ({currentUnit, unitOrder, handleHoverOnImage}:ITurnProps):Re
         ...[
           ...unitOrder.slice(currentUnitIndex + 1),
           ...unitOrder.slice(0, currentUnitIndex),//circle move
-        ].slice(0, COUNT_UNIT_FOR_TURN),
+        ].slice(0, COUNT_UNIT_FOR_TURN+1),
       ]);
     }
   }, [currentUnit]);
@@ -30,13 +29,11 @@ export const Turn = ({currentUnit, unitOrder, handleHoverOnImage}:ITurnProps):Re
     <div className="turn">
       {currentUnitOrder.map((unit, idx)=>{
         return(
-        <div className="turn-item" onClick={handleHoverOnImage} key={idx}>
-          <div className="hp"></div>
-         <GeneralUnitImage currentUnit={unit} name={unit.getName()} />
-         <span>{Math.floor(unit.getHP() * 100 / unit.getMaxHp())}%</span>
-        </div>
+          <div className="turn-item" key={idx}>
+            <GeneralUnitImage currentUnit={unit} name={unit.getName()} />
+          </div>
         )
       })}
     </div>
   );
-}
+};

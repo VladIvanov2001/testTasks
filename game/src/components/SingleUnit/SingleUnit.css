@@ -6,11 +6,6 @@
     overflow: hidden;
 }
 
-.unit-item:hover{
-    cursor: pointer;
-    border: 4px solid #fff000;
-}
-
 .unit-item.current {
     border: 7px solid #ff0000;
 }

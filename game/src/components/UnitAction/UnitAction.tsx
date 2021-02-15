@@ -8,10 +8,9 @@ interface IUnitActionProps {
   handleAction: () => void;
 }
 
-export const UnitAction = ({ handleDefense, handleAction }: IUnitActionProps): ReactElement => {
+export const UnitAction = ({ handleDefense }: IUnitActionProps): ReactElement => {
   return (
     <div className="turn-controller">
-      <button onClick={() => handleAction()}>Show possible targets</button>
       <button onClick={() => handleDefense()}>Defense</button>
     </div>
   );

@@ -15,6 +15,7 @@ import { InfoPanel } from "./components/InfoPanel/InfoPanel";
 import { GameField } from "./components/GameField/GameField";
 import {ROWS, COLUMNS } from './constants/constants';
 import './App.css'
+import { Instruction } from "./components/Instruction/Instruction";
 
 let initialUnits: PossibleUnit[][] | null = null;
 
@@ -52,6 +53,15 @@ function App(): ReactElement {
       setTurnsCount(turnsCount + 1);
     }
   }
+
+  useEffect(()=>{
+    setToSelectTarget(!toSelectTarget);
+    if (currentUnit?.getCountTarget() instanceof MultiTarget) {
+      unitAction?.doAction(TypeOfAction.Action, currentUnit);
+      setToSelectTarget(false);
+      setTurnsCount(turnsCount + 1);
+    }
+  }, [turnsCount])
 
   function handleDefense(): void {
     unitAction?.doAction(TypeOfAction.Defence, currentUnit as Unit);
@@ -104,6 +114,7 @@ function App(): ReactElement {
             handleDefense={handleDefense}
             handleAction={handleAction}
           />
+          <Instruction />
         </>
       )}
     </div>

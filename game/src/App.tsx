@@ -1,5 +1,11 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import {
+  BrowserRouter,
+  Route,
+  Redirect
+} from 'react-router-dom';
+
+import {
   BoardLocation,
   QueueSwitcher,
   Team,
@@ -13,9 +19,10 @@ import { GameOver } from "./components/GameOver/GameOver";
 import { MultiTarget } from "./classes/targets/MultiTarget";
 import { InfoPanel } from "./components/InfoPanel/InfoPanel";
 import { GameField } from "./components/GameField/GameField";
-import {ROWS, COLUMNS } from './constants/constants';
+import { ROWS, COLUMNS } from './constants/constants';
 import './App.css'
 import { Instruction } from "./components/Instruction/Instruction";
+import { Menu } from './components/Menu/Menu';
 
 let initialUnits: PossibleUnit[][] | null = null;
 
@@ -54,7 +61,7 @@ function App(): ReactElement {
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     setToSelectTarget(!toSelectTarget);
     if (currentUnit?.getCountTarget() instanceof MultiTarget) {
       unitAction?.doAction(TypeOfAction.Action, currentUnit);
@@ -93,31 +100,48 @@ function App(): ReactElement {
   }
 
   return (
-    <div className="App">
-      {finish?.isFinished ? (
-        <GameOver currentTeam={finish?.currentTeam} handleNewGame={handleNewGame} />
-      ) : (
-        <>
-          <GameField
-            units={units as Unit[][]}
-            initialUnits={initialUnits as Unit[][]}
-            toSelectTarget={toSelectTarget}
-            handleSelectTarget={handleSelectTarget}
-            currentUnit={currentUnit as Unit}
-            unitAction={unitAction as UnitActionType}
-          />
-          <InfoPanel
-            queueSwitcher={queueSwitcher as QueueSwitcher}
-            toSelectTarget={toSelectTarget}
-            setToSelectTarget={setToSelectTarget}
-            currentUnit={currentUnit as Unit}
-            handleDefense={handleDefense}
-            handleAction={handleAction}
-          />
-          <Instruction />
-        </>
-      )}
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Route exact path="/">
+          <Redirect to="/menu" />
+        </Route>
+
+        <Route
+          path="/menu"
+          component={Menu}
+        />
+        <Route
+        path="/instruction"
+        component={Instruction}/>
+        
+        {finish?.isFinished ? (
+          <Route path="/gameover">
+            <GameOver currentTeam={finish?.currentTeam} handleNewGame={handleNewGame} />
+          </Route>
+        ) : (
+          <Route path="/game">
+            <>
+              <GameField
+                units={units as Unit[][]}
+                initialUnits={initialUnits as Unit[][]}
+                toSelectTarget={toSelectTarget}
+                handleSelectTarget={handleSelectTarget}
+                currentUnit={currentUnit as Unit}
+                unitAction={unitAction as UnitActionType}
+              />
+              <InfoPanel
+                queueSwitcher={queueSwitcher as QueueSwitcher}
+                toSelectTarget={toSelectTarget}
+                setToSelectTarget={setToSelectTarget}
+                currentUnit={currentUnit as Unit}
+                handleDefense={handleDefense}
+                handleAction={handleAction}
+              />
+            </>
+          </Route>
+        )}
+      </div>
+    </BrowserRouter>
   );
 }
 

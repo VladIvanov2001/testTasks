@@ -1,20 +1,92 @@
-.color-on-board{
+.main-instruction {
+    background-image: url("./assets/background.jpg");
+    background-size: cover;
+    background-repeat: inherit;
+    height: 100%;
+    width: 100%;
+}
+
+.color-on-board {
     width: 40px;
     height: 40px;
 }
 
-.instruction{
+.instruction {
     display: flex;
+    margin-bottom: 20px;
 }
 
-.red{
+.red {
     background: #ff0000;
 }
 
-.blue{
+.blue {
     background: #0000ff;
 }
 
-.black{
+.black {
     background: #000;
+}
+
+h2 {
+    font-size: 50px;
+}
+
+.heroes__hero {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.heroes__hero img {
+    height: 400px;
+    width: 400px;
+}
+
+.heroes__hero p {
+    font-size: 25px;
+    color: #fff;
+}
+
+.heroes__hero-description {
+    display: flex;
+    flex-direction: column;
+    margin-right: 90px;
+}
+
+.heroes__hero ul li {
+    list-style: none;
+    margin-top: 53px;
+    font-size: 29px;
+    text-align: left;
+    color: #fff;
+}
+
+.instruction span {
+    font-size: 25px;
+}
+
+.main-instruction-description {
+    font-size: 40px;
+}
+
+.play-button {
+    background-color: red;
+    box-shadow: 0 5px 0 darkred;
+    color: white;
+    padding: 2em 4.5em;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    top: -30px;
+}
+
+.play-button:hover {
+    background-color: #ce0606;
+    cursor: pointer;
+}
+
+.play-button:active {
+    box-shadow: none;
+    top: 5px;
 }
